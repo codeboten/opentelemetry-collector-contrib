@@ -16,7 +16,7 @@ require (
 	github.com/stretchr/testify v1.7.0
 	github.com/tinylib/msgp v1.1.5 // indirect
 	go.opentelemetry.io/collector v0.27.1-0.20210527142130-1f972bbd7997
-	go.uber.org/zap v1.17.0
+	go.uber.org/zap v1.18.1
 )
 
 replace github.com/open-telemetry/opentelemetry-collector-contrib/exporter/carbonexporter => ../exporter/carbonexporter
