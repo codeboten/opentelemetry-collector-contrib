@@ -21,9 +21,6 @@ jobs:
           gomods: '**/go.mod'
           gomodsum_only: true
           remove_gosum: true
-          directives: |
-            1.16
-            1.17
       - uses: stefanzweifel/git-auto-commit-action@v4
         id: autocommit
         with:
