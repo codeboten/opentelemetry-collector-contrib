@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-go@v2.1.4
         with:
           go-version: '^1.16.0'
-      - uses: codeboten/mott-the-tidier@latest
+      - uses: codeboten/mott-the-tidier@v1-beta1
         id: modtidy
         with:
           gomods: '**/go.mod'
