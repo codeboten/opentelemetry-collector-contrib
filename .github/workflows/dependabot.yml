@@ -20,7 +20,6 @@ jobs:
         with:
           gomods: '**/go.mod'
           gomodsum_only: true
-          remove_gosum: true
       - uses: stefanzweifel/git-auto-commit-action@v4
         id: autocommit
         with:
