@@ -137,7 +137,7 @@ require (
 	github.com/influxdata/influxdb-observability/common v0.2.10 // indirect
 	github.com/influxdata/influxdb-observability/influx2otel v0.2.10 // indirect
 	github.com/influxdata/influxdb-observability/otel2influx v0.2.10 // indirect
-	github.com/influxdata/line-protocol/v2 v2.2.0 // indirect
+	github.com/influxdata/line-protocol/v2 v2.2.1 // indirect
 	github.com/jaegertracing/jaeger v1.28.0 // indirect
 	github.com/jcmturner/aescts/v2 v2.0.0 // indirect
 	github.com/jcmturner/dnsutils/v2 v2.0.0 // indirect
