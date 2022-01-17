@@ -3,7 +3,7 @@ module github.com/open-telemetry/opentelemetry-collector-contrib/receiver/google
 go 1.17
 
 require (
-	cloud.google.com/go/spanner v1.28.0
+	cloud.google.com/go/spanner v1.29.0
 	github.com/stretchr/testify v1.7.0
 	go.opentelemetry.io/collector v0.41.1-0.20211210184707-4dcb3388a168
 	go.opentelemetry.io/collector/model v0.41.1-0.20211210184707-4dcb3388a168
@@ -26,7 +26,7 @@ require (
 require (
 	cloud.google.com/go v0.99.0 // indirect
 	github.com/benbjohnson/clock v1.2.0 // indirect
-	github.com/census-instrumentation/opencensus-proto v0.2.1 // indirect
+	github.com/census-instrumentation/opencensus-proto v0.3.0 // indirect
 	github.com/cespare/xxhash/v2 v2.1.1 // indirect
 	github.com/cncf/udpa/go v0.0.0-20210930031921-04548b0d99d4 // indirect
 	github.com/cncf/xds/go v0.0.0-20211011173535-cb28da3451f1 // indirect
