@@ -194,16 +194,19 @@ func (ocr *ocReceiver) Shutdown(context.Context) error {
 		err = ocr.serverHTTP.Close()
 	}
 
-	if ocr.ln != nil {
-		_ = ocr.ln.Close()
-	}
-
 	// TODO: @(odeke-em) investigate what utility invoking (*grpc.Server).Stop()
 	// gives us yet we invoke (net.Listener).Close().
 	// Sure (*grpc.Server).Stop() enables proper shutdown but imposes
 	// a painful and artificial wait time that goes into 20+seconds yet most of our
 	// tests and code should be reactive in less than even 1second.
 	// ocr.serverGRPC.Stop()
+	if ocr.serverGRPC != nil {
+		ocr.serverGRPC.Stop()
+	}
+
+	if ocr.ln != nil {
+		_ = ocr.ln.Close()
+	}
 
 	return err
 }
