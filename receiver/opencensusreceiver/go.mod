@@ -16,12 +16,12 @@ require (
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.31.0
 	go.opentelemetry.io/otel v1.6.3
 	go.opentelemetry.io/otel/trace v1.6.3
-	google.golang.org/grpc v1.45.0
+	google.golang.org/grpc v1.46.0
 	google.golang.org/protobuf v1.28.0
 )
 
 require (
-	go.opentelemetry.io/collector/pdata v0.49.0
+	go.opentelemetry.io/collector/pdata v0.50.0
 	go.opentelemetry.io/otel/sdk v1.6.3
 )
 
