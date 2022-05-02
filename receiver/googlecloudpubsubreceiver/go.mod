@@ -6,12 +6,12 @@ require (
 	cloud.google.com/go/pubsub v1.20.0
 	github.com/stretchr/testify v1.7.1
 	go.opentelemetry.io/collector v0.49.0
-	go.opentelemetry.io/collector/pdata v0.49.0
+	go.opentelemetry.io/collector/pdata v0.50.0
 	go.uber.org/atomic v1.9.0
 	go.uber.org/zap v1.21.0
 	google.golang.org/api v0.74.0
 	google.golang.org/genproto v0.0.0-20220413183235-5e96e2839df9
-	google.golang.org/grpc v1.45.0
+	google.golang.org/grpc v1.46.0
 )
 
 require (
