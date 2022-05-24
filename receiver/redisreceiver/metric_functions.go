@@ -52,13 +52,13 @@ func (rs *redisScraper) dataPointRecorders() map[string]interface{} {
 }
 
 func (rs *redisScraper) recordUsedCPUSys(now pcommon.Timestamp, val float64) {
-	rs.mb.RecordRedisCPUTimeDataPoint(now, val, "sys")
+	rs.mb.RecordProcessCPUTimeDataPoint(now, val, "sys")
 }
 
 func (rs *redisScraper) recordUsedCPUSysChildren(now pcommon.Timestamp, val float64) {
-	rs.mb.RecordRedisCPUTimeDataPoint(now, val, "children")
+	rs.mb.RecordProcessCPUTimeDataPoint(now, val, "children")
 }
 
 func (rs *redisScraper) recordUsedCPUSysUser(now pcommon.Timestamp, val float64) {
-	rs.mb.RecordRedisCPUTimeDataPoint(now, val, "user")
+	rs.mb.RecordProcessCPUTimeDataPoint(now, val, "user")
 }

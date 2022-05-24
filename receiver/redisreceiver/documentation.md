@@ -8,6 +8,7 @@ These are the metrics available for this scraper.
 
 | Name | Description | Unit | Type | Attributes |
 | ---- | ----------- | ---- | ---- | ---------- |
+| **process.cpu.time** | System CPU consumed by the Redis server in seconds since server start | s | Sum(Double) | <ul> <li>state</li> <li>db.system</li> </ul> |
 | **redis.clients.blocked** | Number of clients pending on a blocking call |  | Sum(Int) | <ul> </ul> |
 | **redis.clients.connected** | Number of client connections (excluding connections from replicas) |  | Sum(Int) | <ul> </ul> |
 | **redis.clients.max_input_buffer** | Biggest input buffer among current client connections |  | Gauge(Int) | <ul> </ul> |
@@ -16,7 +17,6 @@ These are the metrics available for this scraper.
 | **redis.commands.processed** | Total number of commands processed by the server |  | Sum(Int) | <ul> </ul> |
 | **redis.connections.received** | Total number of connections accepted by the server |  | Sum(Int) | <ul> </ul> |
 | **redis.connections.rejected** | Number of connections rejected because of maxclients limit |  | Sum(Int) | <ul> </ul> |
-| **redis.cpu.time** | System CPU consumed by the Redis server in seconds since server start | s | Sum(Double) | <ul> <li>state</li> </ul> |
 | **redis.db.avg_ttl** | Average keyspace keys TTL | ms | Gauge(Int) | <ul> <li>db</li> </ul> |
 | **redis.db.expires** | Number of keyspace keys with an expiration |  | Gauge(Int) | <ul> <li>db</li> </ul> |
 | **redis.db.keys** | Number of keyspace keys |  | Gauge(Int) | <ul> <li>db</li> </ul> |
@@ -52,4 +52,5 @@ metrics:
 | Name | Description | Values |
 | ---- | ----------- | ------ |
 | db | Redis database identifier |  |
+| db.system (redis) | Redis identifier |  |
 | state | Redis CPU usage state |  |

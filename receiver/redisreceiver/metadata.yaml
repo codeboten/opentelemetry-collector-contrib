@@ -5,6 +5,9 @@ attributes:
     description: Redis CPU usage state
   db:
     description: Redis database identifier
+  db.system:
+    description: Redis identifier
+    value: redis
 
 metrics:
   redis.uptime:
@@ -16,7 +19,7 @@ metrics:
       monotonic: true
       aggregation: cumulative
 
-  redis.cpu.time:
+  process.cpu.time:
     enabled: true
     description: System CPU consumed by the Redis server in seconds since server start
     unit: s
@@ -24,7 +27,7 @@ metrics:
       value_type: double
       monotonic: true
       aggregation: cumulative
-    attributes: [state]
+    attributes: [state, db.system]
 
   redis.clients.connected:
     enabled: true

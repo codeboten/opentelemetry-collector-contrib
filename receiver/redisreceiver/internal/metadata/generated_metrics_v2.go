@@ -17,6 +17,7 @@ type MetricSettings struct {
 
 // MetricsSettings provides settings for redisreceiver metrics.
 type MetricsSettings struct {
+	ProcessCPUTime                         MetricSettings `mapstructure:"process.cpu.time"`
 	RedisClientsBlocked                    MetricSettings `mapstructure:"redis.clients.blocked"`
 	RedisClientsConnected                  MetricSettings `mapstructure:"redis.clients.connected"`
 	RedisClientsMaxInputBuffer             MetricSettings `mapstructure:"redis.clients.max_input_buffer"`
@@ -25,7 +26,6 @@ type MetricsSettings struct {
 	RedisCommandsProcessed                 MetricSettings `mapstructure:"redis.commands.processed"`
 	RedisConnectionsReceived               MetricSettings `mapstructure:"redis.connections.received"`
 	RedisConnectionsRejected               MetricSettings `mapstructure:"redis.connections.rejected"`
-	RedisCPUTime                           MetricSettings `mapstructure:"redis.cpu.time"`
 	RedisDbAvgTTL                          MetricSettings `mapstructure:"redis.db.avg_ttl"`
 	RedisDbExpires                         MetricSettings `mapstructure:"redis.db.expires"`
 	RedisDbKeys                            MetricSettings `mapstructure:"redis.db.keys"`
@@ -50,6 +50,9 @@ type MetricsSettings struct {
 
 func DefaultMetricsSettings() MetricsSettings {
 	return MetricsSettings{
+		ProcessCPUTime: MetricSettings{
+			Enabled: true,
+		},
 		RedisClientsBlocked: MetricSettings{
 			Enabled: true,
 		},
@@ -72,9 +75,6 @@ func DefaultMetricsSettings() MetricsSettings {
 			Enabled: true,
 		},
 		RedisConnectionsRejected: MetricSettings{
-			Enabled: true,
-		},
-		RedisCPUTime: MetricSettings{
 			Enabled: true,
 		},
 		RedisDbAvgTTL: MetricSettings{
@@ -138,6 +138,60 @@ func DefaultMetricsSettings() MetricsSettings {
 			Enabled: true,
 		},
 	}
+}
+
+type metricProcessCPUTime struct {
+	data     pmetric.Metric // data buffer for generated metric.
+	settings MetricSettings // metric settings provided by user.
+	capacity int            // max observed number of data points added to the metric.
+}
+
+// init fills process.cpu.time metric with initial data.
+func (m *metricProcessCPUTime) init() {
+	m.data.SetName("process.cpu.time")
+	m.data.SetDescription("System CPU consumed by the Redis server in seconds since server start")
+	m.data.SetUnit("s")
+	m.data.SetDataType(pmetric.MetricDataTypeSum)
+	m.data.Sum().SetIsMonotonic(true)
+	m.data.Sum().SetAggregationTemporality(pmetric.MetricAggregationTemporalityCumulative)
+	m.data.Sum().DataPoints().EnsureCapacity(m.capacity)
+}
+
+func (m *metricProcessCPUTime) recordDataPoint(start pcommon.Timestamp, ts pcommon.Timestamp, val float64, stateAttributeValue string, dbSystemAttributeValue string) {
+	if !m.settings.Enabled {
+		return
+	}
+	dp := m.data.Sum().DataPoints().AppendEmpty()
+	dp.SetStartTimestamp(start)
+	dp.SetTimestamp(ts)
+	dp.SetDoubleVal(val)
+	dp.Attributes().Insert("state", pcommon.NewValueString(stateAttributeValue))
+	dp.Attributes().Insert("redis", pcommon.NewValueString(dbSystemAttributeValue))
+}
+
+// updateCapacity saves max length of data point slices that will be used for the slice capacity.
+func (m *metricProcessCPUTime) updateCapacity() {
+	if m.data.Sum().DataPoints().Len() > m.capacity {
+		m.capacity = m.data.Sum().DataPoints().Len()
+	}
+}
+
+// emit appends recorded metric data to a metrics slice and prepares it for recording another set of data points.
+func (m *metricProcessCPUTime) emit(metrics pmetric.MetricSlice) {
+	if m.settings.Enabled && m.data.Sum().DataPoints().Len() > 0 {
+		m.updateCapacity()
+		m.data.MoveTo(metrics.AppendEmpty())
+		m.init()
+	}
+}
+
+func newMetricProcessCPUTime(settings MetricSettings) metricProcessCPUTime {
+	m := metricProcessCPUTime{settings: settings}
+	if settings.Enabled {
+		m.data = pmetric.NewMetric()
+		m.init()
+	}
+	return m
 }
 
 type metricRedisClientsBlocked struct {
@@ -535,59 +589,6 @@ func (m *metricRedisConnectionsRejected) emit(metrics pmetric.MetricSlice) {
 
 func newMetricRedisConnectionsRejected(settings MetricSettings) metricRedisConnectionsRejected {
 	m := metricRedisConnectionsRejected{settings: settings}
-	if settings.Enabled {
-		m.data = pmetric.NewMetric()
-		m.init()
-	}
-	return m
-}
-
-type metricRedisCPUTime struct {
-	data     pmetric.Metric // data buffer for generated metric.
-	settings MetricSettings // metric settings provided by user.
-	capacity int            // max observed number of data points added to the metric.
-}
-
-// init fills redis.cpu.time metric with initial data.
-func (m *metricRedisCPUTime) init() {
-	m.data.SetName("redis.cpu.time")
-	m.data.SetDescription("System CPU consumed by the Redis server in seconds since server start")
-	m.data.SetUnit("s")
-	m.data.SetDataType(pmetric.MetricDataTypeSum)
-	m.data.Sum().SetIsMonotonic(true)
-	m.data.Sum().SetAggregationTemporality(pmetric.MetricAggregationTemporalityCumulative)
-	m.data.Sum().DataPoints().EnsureCapacity(m.capacity)
-}
-
-func (m *metricRedisCPUTime) recordDataPoint(start pcommon.Timestamp, ts pcommon.Timestamp, val float64, stateAttributeValue string) {
-	if !m.settings.Enabled {
-		return
-	}
-	dp := m.data.Sum().DataPoints().AppendEmpty()
-	dp.SetStartTimestamp(start)
-	dp.SetTimestamp(ts)
-	dp.SetDoubleVal(val)
-	dp.Attributes().Insert("state", pcommon.NewValueString(stateAttributeValue))
-}
-
-// updateCapacity saves max length of data point slices that will be used for the slice capacity.
-func (m *metricRedisCPUTime) updateCapacity() {
-	if m.data.Sum().DataPoints().Len() > m.capacity {
-		m.capacity = m.data.Sum().DataPoints().Len()
-	}
-}
-
-// emit appends recorded metric data to a metrics slice and prepares it for recording another set of data points.
-func (m *metricRedisCPUTime) emit(metrics pmetric.MetricSlice) {
-	if m.settings.Enabled && m.data.Sum().DataPoints().Len() > 0 {
-		m.updateCapacity()
-		m.data.MoveTo(metrics.AppendEmpty())
-		m.init()
-	}
-}
-
-func newMetricRedisCPUTime(settings MetricSettings) metricRedisCPUTime {
-	m := metricRedisCPUTime{settings: settings}
 	if settings.Enabled {
 		m.data = pmetric.NewMetric()
 		m.init()
@@ -1607,6 +1608,7 @@ type MetricsBuilder struct {
 	resourceCapacity                             int                 // maximum observed number of resource attributes.
 	metricsBuffer                                pmetric.Metrics     // accumulates metrics data before emitting.
 	buildInfo                                    component.BuildInfo // contains version information
+	metricProcessCPUTime                         metricProcessCPUTime
 	metricRedisClientsBlocked                    metricRedisClientsBlocked
 	metricRedisClientsConnected                  metricRedisClientsConnected
 	metricRedisClientsMaxInputBuffer             metricRedisClientsMaxInputBuffer
@@ -1615,7 +1617,6 @@ type MetricsBuilder struct {
 	metricRedisCommandsProcessed                 metricRedisCommandsProcessed
 	metricRedisConnectionsReceived               metricRedisConnectionsReceived
 	metricRedisConnectionsRejected               metricRedisConnectionsRejected
-	metricRedisCPUTime                           metricRedisCPUTime
 	metricRedisDbAvgTTL                          metricRedisDbAvgTTL
 	metricRedisDbExpires                         metricRedisDbExpires
 	metricRedisDbKeys                            metricRedisDbKeys
@@ -1653,6 +1654,7 @@ func NewMetricsBuilder(settings MetricsSettings, buildInfo component.BuildInfo, 
 		startTime:                                    pcommon.NewTimestampFromTime(time.Now()),
 		metricsBuffer:                                pmetric.NewMetrics(),
 		buildInfo:                                    buildInfo,
+		metricProcessCPUTime:                         newMetricProcessCPUTime(settings.ProcessCPUTime),
 		metricRedisClientsBlocked:                    newMetricRedisClientsBlocked(settings.RedisClientsBlocked),
 		metricRedisClientsConnected:                  newMetricRedisClientsConnected(settings.RedisClientsConnected),
 		metricRedisClientsMaxInputBuffer:             newMetricRedisClientsMaxInputBuffer(settings.RedisClientsMaxInputBuffer),
@@ -1661,7 +1663,6 @@ func NewMetricsBuilder(settings MetricsSettings, buildInfo component.BuildInfo, 
 		metricRedisCommandsProcessed:                 newMetricRedisCommandsProcessed(settings.RedisCommandsProcessed),
 		metricRedisConnectionsReceived:               newMetricRedisConnectionsReceived(settings.RedisConnectionsReceived),
 		metricRedisConnectionsRejected:               newMetricRedisConnectionsRejected(settings.RedisConnectionsRejected),
-		metricRedisCPUTime:                           newMetricRedisCPUTime(settings.RedisCPUTime),
 		metricRedisDbAvgTTL:                          newMetricRedisDbAvgTTL(settings.RedisDbAvgTTL),
 		metricRedisDbExpires:                         newMetricRedisDbExpires(settings.RedisDbExpires),
 		metricRedisDbKeys:                            newMetricRedisDbKeys(settings.RedisDbKeys),
@@ -1734,6 +1735,7 @@ func (mb *MetricsBuilder) EmitForResource(rmo ...ResourceMetricsOption) {
 	ils.Scope().SetName("otelcol/redisreceiver")
 	ils.Scope().SetVersion(mb.buildInfo.Version)
 	ils.Metrics().EnsureCapacity(mb.metricsCapacity)
+	mb.metricProcessCPUTime.emit(ils.Metrics())
 	mb.metricRedisClientsBlocked.emit(ils.Metrics())
 	mb.metricRedisClientsConnected.emit(ils.Metrics())
 	mb.metricRedisClientsMaxInputBuffer.emit(ils.Metrics())
@@ -1742,7 +1744,6 @@ func (mb *MetricsBuilder) EmitForResource(rmo ...ResourceMetricsOption) {
 	mb.metricRedisCommandsProcessed.emit(ils.Metrics())
 	mb.metricRedisConnectionsReceived.emit(ils.Metrics())
 	mb.metricRedisConnectionsRejected.emit(ils.Metrics())
-	mb.metricRedisCPUTime.emit(ils.Metrics())
 	mb.metricRedisDbAvgTTL.emit(ils.Metrics())
 	mb.metricRedisDbExpires.emit(ils.Metrics())
 	mb.metricRedisDbKeys.emit(ils.Metrics())
@@ -1780,6 +1781,11 @@ func (mb *MetricsBuilder) Emit(rmo ...ResourceMetricsOption) pmetric.Metrics {
 	metrics := pmetric.NewMetrics()
 	mb.metricsBuffer.MoveTo(metrics)
 	return metrics
+}
+
+// RecordProcessCPUTimeDataPoint adds a data point to process.cpu.time metric.
+func (mb *MetricsBuilder) RecordProcessCPUTimeDataPoint(ts pcommon.Timestamp, val float64, stateAttributeValue string, dbSystemAttributeValue string) {
+	mb.metricProcessCPUTime.recordDataPoint(mb.startTime, ts, val, stateAttributeValue, dbSystemAttributeValue)
 }
 
 // RecordRedisClientsBlockedDataPoint adds a data point to redis.clients.blocked metric.
@@ -1820,11 +1826,6 @@ func (mb *MetricsBuilder) RecordRedisConnectionsReceivedDataPoint(ts pcommon.Tim
 // RecordRedisConnectionsRejectedDataPoint adds a data point to redis.connections.rejected metric.
 func (mb *MetricsBuilder) RecordRedisConnectionsRejectedDataPoint(ts pcommon.Timestamp, val int64) {
 	mb.metricRedisConnectionsRejected.recordDataPoint(mb.startTime, ts, val)
-}
-
-// RecordRedisCPUTimeDataPoint adds a data point to redis.cpu.time metric.
-func (mb *MetricsBuilder) RecordRedisCPUTimeDataPoint(ts pcommon.Timestamp, val float64, stateAttributeValue string) {
-	mb.metricRedisCPUTime.recordDataPoint(mb.startTime, ts, val, stateAttributeValue)
 }
 
 // RecordRedisDbAvgTTLDataPoint adds a data point to redis.db.avg_ttl metric.
