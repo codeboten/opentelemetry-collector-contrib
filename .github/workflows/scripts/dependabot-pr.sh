@@ -21,7 +21,7 @@ for line in $requests; do
         continue
     fi
     version=$(echo $line | cut -f 6 -d " ")
-    make for-all CMD="./internal/buildscripts/update-dep" MODULE=$module VERSION=v$version
+    make for-all CMD="$GITHUB_WORKSPACE/internal/buildscripts/update-dep" MODULE=$module VERSION=v$version
     message+=$line
     message+=$'\n'
 done
