@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 
 # TODO: discuss if each SIG should have its own or use a common bot
 # git config user.name opentelemetry-java-bot
@@ -30,6 +30,7 @@ done
 make gotidy
 make otelcontribcol
 
+gh auth login
 git add go.sum go.mod
 git add "**/go.sum" "**/go.mod"
 git commit -m "dependabot updates `date`
