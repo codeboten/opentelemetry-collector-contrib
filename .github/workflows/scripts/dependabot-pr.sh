@@ -3,7 +3,6 @@
 # TODO: discuss if each SIG should have its own or use a common bot
 # git config user.name opentelemetry-java-bot
 # git config user.email 97938252+opentelemetry-java-bot@users.noreply.github.com
-gh auth login
 
 PR_NAME=dependabot-prs/`date +'%Y-%m-%d-%H%M%S'`
 git checkout -b $PR_NAME
@@ -30,7 +29,6 @@ done
 make gotidy
 make otelcontribcol
 
-gh auth login
 git add go.sum go.mod
 git add "**/go.sum" "**/go.mod"
 git commit -m "dependabot updates `date`
