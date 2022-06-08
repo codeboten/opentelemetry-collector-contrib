@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+## 🛑 Breaking changes 🛑
+
+### 🚩 Deprecations 🚩
+
+### 🚀 New components 🚀
+
+### 💡 Enhancements 💡
+
+### 🧰 Bug fixes 🧰
+
+## v0.53.0
+
 ### 🛑 Breaking changes 🛑
 
 - `jmxreceiver`: Remove properties & groovyscript parameters from JMX Receiver. Add ResourceAttributes & LogLevel parameter to supply some of the removed functionality with reduced attack surface (#9685)
@@ -9,9 +21,6 @@
 - `pkg/stanza`: Removed reference to deprecated `ClusterName` (#10426)
 - `couchbasereceiver`: Fully removed unimplemented Couchbase receiver (#10482)
 - `hostmetricsreciever`: Fix Load Scraper to normalize 1m, 5m, and 15m averages independently (#8267)
-
-### 🚩 Deprecations 🚩
-
 
 ### 🚀 New components 🚀
 
@@ -28,7 +37,9 @@
 - `mezemoexporter`: Add user agent string to outgoing HTTP requests (#10470)
 - `prometheusreceiver`: Improve performance of metrics builder (#10546)
 - `transformprocessor`: Add functions for conversion of scalar metric types (`gauge_to_sum` and `sum_to_gauge`) (#10255)
+- `dynatraceexporter`: Use min and max when provided in a data point for histograms (#10815)
 - `dynatraceexporter`: Truncate unmarshalable responses to avoid long log lines (#10568)
+- `scrapertest`: Add `IgnoreResourceAttributeValue` option to metric comparison (#10828)
 
 ### 🧰 Bug fixes 🧰
 
