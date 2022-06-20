@@ -1,6 +1,6 @@
 # AWS CloudWatch EMF Exporter for OpenTelemetry Collector
 
-This exporter converts OpenTelemetry metrics to 
+ This exporter converts OpenTelemetry metrics to 
 [AWS CloudWatch Embedded Metric Format(EMF)](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Embedded_Metric_Format_Specification.html)
 and then sends them directly to CloudWatch Logs using the 
 [PutLogEvents](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutLogEvents.html) API.
