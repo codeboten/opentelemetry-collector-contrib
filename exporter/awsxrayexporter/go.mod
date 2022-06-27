@@ -6,7 +6,7 @@ require (
 	github.com/aws/aws-sdk-go v1.44.38
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/awsutil v0.53.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray v0.53.0
-	github.com/stretchr/testify v1.7.3
+	github.com/stretchr/testify v1.7.5
 	go.opentelemetry.io/collector v0.53.1-0.20220615184617-4cefca87d2c6
 	go.opentelemetry.io/collector/pdata v0.53.1-0.20220615184617-4cefca87d2c6
 	go.opentelemetry.io/collector/semconv v0.53.1-0.20220615184617-4cefca87d2c6
