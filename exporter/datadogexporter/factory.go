@@ -16,6 +16,7 @@ package datadogexporter // import "github.com/open-telemetry/opentelemetry-colle
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"os"
 	"sync"
@@ -33,7 +34,7 @@ import (
 
 	ddconfig "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/datadogexporter/config"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/datadogexporter/internal/metadata"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/datadogexporter/internal/metadata/provider"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/datadogexporter/internal/model/source"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/resourcetotelemetry"
 )
 
@@ -45,18 +46,18 @@ const (
 type factory struct {
 	onceMetadata sync.Once
 
-	onceProvider sync.Once
-	hostProvider provider.HostnameProvider
-	providerErr  error
+	onceProvider   sync.Once
+	sourceProvider source.Provider
+	providerErr    error
 
 	registry *featuregate.Registry
 }
 
-func (f *factory) HostnameProvider(set component.TelemetrySettings, configHostname string) (provider.HostnameProvider, error) {
+func (f *factory) SourceProvider(set component.TelemetrySettings, configHostname string) (source.Provider, error) {
 	f.onceProvider.Do(func() {
-		f.hostProvider, f.providerErr = metadata.GetHostnameProvider(set, configHostname)
+		f.sourceProvider, f.providerErr = metadata.GetSourceProvider(set, configHostname)
 	})
-	return f.hostProvider, f.providerErr
+	return f.sourceProvider, f.providerErr
 }
 
 func newFactoryWithRegistry(registry *featuregate.Registry) component.ExporterFactory {
@@ -137,6 +138,7 @@ func (f *factory) createDefaultConfig() config.Exporter {
 			ExporterConfig: ddconfig.MetricsExporterConfig{
 				ResourceAttributesAsTags:             false,
 				InstrumentationLibraryMetadataAsTags: false,
+				InstrumentationScopeMetadataAsTags:   false,
 			},
 			HistConfig: ddconfig.HistogramConfig{
 				Mode:         "distributions",
@@ -180,7 +182,7 @@ func (f *factory) createMetricsExporter(
 		return nil, err
 	}
 
-	hostProvider, err := f.HostnameProvider(set.TelemetrySettings, cfg.Hostname)
+	hostProvider, err := f.SourceProvider(set.TelemetrySettings, cfg.Hostname)
 	if err != nil {
 		return nil, fmt.Errorf("failed to build hostname provider: %w", err)
 	}
@@ -237,24 +239,26 @@ func (f *factory) createTracesExporter(
 	set component.ExporterCreateSettings,
 	c config.Exporter,
 ) (component.TracesExporter, error) {
-
-	cfg := c.(*ddconfig.Config)
-
+	cfg, ok := c.(*ddconfig.Config)
+	if !ok {
+		return nil, errors.New("programming error: config structure is not of type *ddconfig.Config")
+	}
 	if err := cfg.Sanitize(set.Logger); err != nil {
 		return nil, err
 	}
-
-	hostProvider, err := f.HostnameProvider(set.TelemetrySettings, cfg.Hostname)
+	var (
+		pusher consumer.ConsumeTracesFunc
+		stop   component.ShutdownFunc
+	)
+	hostProvider, err := f.SourceProvider(set.TelemetrySettings, cfg.Hostname)
 	if err != nil {
 		return nil, fmt.Errorf("failed to build hostname provider: %w", err)
 	}
-
-	ctx, cancel := context.WithCancel(ctx)
-	var pushTracesFn consumer.ConsumeTracesFunc
-
+	ctx, cancel := context.WithCancel(ctx) // nolint:govet
+	// cancel() runs on shutdown
 	if cfg.OnlyMetadata {
-		pushTracesFn = func(_ context.Context, td ptrace.Traces) error {
-			// only sending metadata, use only attributes
+		// only host metadata needs to be sent, once.
+		pusher = func(_ context.Context, td ptrace.Traces) error {
 			f.onceMetadata.Do(func() {
 				attrs := pcommon.NewMap()
 				if td.ResourceSpans().Len() > 0 {
@@ -262,30 +266,35 @@ func (f *factory) createTracesExporter(
 				}
 				go metadata.Pusher(ctx, set, newMetadataConfigfromConfig(cfg), hostProvider, attrs)
 			})
-
+			return nil
+		}
+		stop = func(context.Context) error {
+			cancel()
 			return nil
 		}
 	} else {
-		exporter, tracesErr := newTracesExporter(ctx, set, cfg, &f.onceMetadata, hostProvider)
-		if tracesErr != nil {
+		tracex, err2 := newTracesExporter(ctx, set, cfg, &f.onceMetadata, hostProvider)
+		if err2 != nil {
 			cancel()
-			return nil, tracesErr
+			return nil, err2
 		}
-		pushTracesFn = exporter.pushTraceDataScrubbed
+		pusher = tracex.consumeTraces
+		stop = func(context.Context) error {
+			cancel()              // first cancel context
+			tracex.waitShutdown() // then wait for shutdown
+			return nil
+		}
 	}
 
 	return exporterhelper.NewTracesExporter(
 		cfg,
 		set,
-		pushTracesFn,
+		pusher,
 		// explicitly disable since we rely on http.Client timeout logic.
 		exporterhelper.WithTimeout(exporterhelper.TimeoutSettings{Timeout: 0 * time.Second}),
 		// We don't do retries on traces because of deduping concerns on APM Events.
 		exporterhelper.WithRetry(exporterhelper.RetrySettings{Enabled: false}),
 		exporterhelper.WithQueue(cfg.QueueSettings),
-		exporterhelper.WithShutdown(func(context.Context) error {
-			cancel()
-			return nil
-		}),
+		exporterhelper.WithShutdown(stop),
 	)
 }

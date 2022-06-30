@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// nolint:gocritic
 package tailsamplingprocessor // import "github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor"
 
 import (
@@ -148,6 +147,9 @@ func getPolicyEvaluator(logger *zap.Logger, cfg *PolicyCfg) (sampling.PolicyEval
 	case SpanCount:
 		spCfg := cfg.SpanCountCfg
 		return sampling.NewSpanCount(logger, spCfg.MinSpans), nil
+	case TraceState:
+		tsfCfg := cfg.TraceStateCfg
+		return sampling.NewTraceStateFilter(logger, tsfCfg.Key, tsfCfg.Values), nil
 	default:
 		return nil, fmt.Errorf("unknown sampling policy type %s", cfg.Type)
 	}
@@ -256,11 +258,12 @@ func (tsp *tailSamplingSpanProcessor) makeDecision(id pcommon.TraceID, trace *sa
 	}
 
 	// InvertNotSampled takes precedence over any other decision
-	if samplingDecision[sampling.InvertNotSampled] {
+	switch {
+	case samplingDecision[sampling.InvertNotSampled]:
 		finalDecision = sampling.NotSampled
-	} else if samplingDecision[sampling.Sampled] {
+	case samplingDecision[sampling.Sampled]:
 		finalDecision = sampling.Sampled
-	} else if samplingDecision[sampling.InvertSampled] && !samplingDecision[sampling.NotSampled] {
+	case samplingDecision[sampling.InvertSampled] && !samplingDecision[sampling.NotSampled]:
 		finalDecision = sampling.Sampled
 	}
 
