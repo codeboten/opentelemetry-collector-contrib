@@ -3,15 +3,15 @@ module github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkin
 go 1.17
 
 require (
-	github.com/jaegertracing/jaeger v1.36.0
-	github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal v0.55.0
+	github.com/jaegertracing/jaeger v1.37.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal v0.56.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/zipkin v0.55.0
 	github.com/openzipkin/zipkin-go v0.4.0
 	github.com/stretchr/testify v1.8.0
-	go.opentelemetry.io/collector v0.55.1-0.20220711160057-6133c820fd50
-	go.opentelemetry.io/collector/pdata v0.55.1-0.20220711160057-6133c820fd50
-	go.opentelemetry.io/collector/semconv v0.55.1-0.20220711160057-6133c820fd50
-	google.golang.org/protobuf v1.28.0
+	go.opentelemetry.io/collector v0.56.0
+	go.opentelemetry.io/collector/pdata v0.56.0
+	go.opentelemetry.io/collector/semconv v0.56.0
+	google.golang.org/protobuf v1.28.1
 )
 
 require (
