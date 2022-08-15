@@ -4,9 +4,9 @@ go 1.17
 
 require (
 	github.com/DataDog/agent-payload/v5 v5.0.23
-	github.com/DataDog/datadog-agent/pkg/otlp/model v0.38.0-rc.5
-	github.com/DataDog/datadog-agent/pkg/quantile v0.38.0-rc.5
-	github.com/DataDog/datadog-agent/pkg/trace v0.38.0-rc.5
+	github.com/DataDog/datadog-agent/pkg/otlp/model v0.39.0-rc.2
+	github.com/DataDog/datadog-agent/pkg/quantile v0.39.0-rc.2
+	github.com/DataDog/datadog-agent/pkg/trace v0.39.0-rc.2
 	github.com/DataDog/sketches-go v1.4.1
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp v0.32.3
 	github.com/aws/aws-sdk-go v1.44.53
@@ -18,8 +18,8 @@ require (
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/stretchr/testify v1.8.0
 	go.opentelemetry.io/collector v0.55.1-0.20220711160057-6133c820fd50
-	go.opentelemetry.io/collector/pdata v0.55.1-0.20220711160057-6133c820fd50
-	go.opentelemetry.io/collector/semconv v0.55.1-0.20220711160057-6133c820fd50
+	go.opentelemetry.io/collector/pdata v0.56.0
+	go.opentelemetry.io/collector/semconv v0.56.0
 	go.uber.org/multierr v1.8.0
 	go.uber.org/zap v1.21.0
 	gopkg.in/zorkian/go-datadog-api.v2 v2.30.0
@@ -29,9 +29,9 @@ require (
 
 require (
 	cloud.google.com/go/compute v1.6.1 // indirect
-	github.com/DataDog/datadog-agent/pkg/obfuscate v0.38.0-rc.5 // indirect
-	github.com/DataDog/datadog-agent/pkg/remoteconfig/state v0.38.0-rc.5 // indirect
-	github.com/DataDog/datadog-go/v5 v5.1.0 // indirect
+	github.com/DataDog/datadog-agent/pkg/obfuscate v0.39.0-rc.2 // indirect
+	github.com/DataDog/datadog-agent/pkg/remoteconfig/state v0.39.0-rc.2 // indirect
+	github.com/DataDog/datadog-go/v5 v5.1.1 // indirect
 	github.com/Microsoft/go-winio v0.5.2 // indirect
 	github.com/PuerkitoBio/purell v1.1.1 // indirect
 	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 // indirect
