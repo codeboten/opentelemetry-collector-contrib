@@ -29,8 +29,9 @@ import (
 )
 
 const (
-	tmplFile   = "metrics.tmpl"
-	outputFile = "generated_metrics.go"
+	tmplFile          = "metrics.tmpl"
+	outputFile        = "generated_metrics.go"
+	factoryOutputFile = "generated_factory.go"
 )
 
 func main() {
@@ -62,6 +63,11 @@ func run(ymlPath string) error {
 	if err = generateMetrics(ymlDir, thisDir, md); err != nil {
 		return err
 	}
+
+	if err = generateFactory(ymlDir, thisDir, md); err != nil {
+		return err
+	}
+
 	return generateDocumentation(ymlDir, thisDir, md)
 }
 
@@ -146,6 +152,72 @@ func generateDocumentation(ymlDir string, thisDir string, md metadata) error {
 	outputFile := filepath.Join(ymlDir, "documentation.md")
 	if err := os.WriteFile(outputFile, buf.Bytes(), 0600); err != nil {
 		return fmt.Errorf("failed writing %q: %w", outputFile, err)
+	}
+
+	return nil
+}
+
+func generateFactory(ymlDir string, thisDir string, md metadata) error {
+	tmpl := template.Must(
+		template.
+			New("factory.tmpl").
+			Option("missingkey=error").
+			Funcs(map[string]interface{}{
+				"publicVar": func(s string) (string, error) {
+					return formatIdentifier(s, true)
+				},
+				"attributeInfo": func(an attributeName) attribute {
+					return md.Attributes[an]
+				},
+				"attributeKey": func(an attributeName) string {
+					if md.Attributes[an].Value != "" {
+						return md.Attributes[an].Value
+					}
+					return string(an)
+				},
+				"parseImportsRequired": func(metrics map[metricName]metric) bool {
+					for _, m := range metrics {
+						if m.Data().HasMetricInputType() {
+							return true
+						}
+					}
+					return false
+				},
+				"stabilityLevel": func(level string) string {
+					switch level {
+					case "beta":
+						return "StabilityLevelBeta"
+					}
+					return "StabilityLevelUndefined"
+				},
+			}).ParseFiles(filepath.Join(thisDir, "factory.tmpl")))
+	buf := bytes.Buffer{}
+
+	if err := tmpl.Execute(&buf, templateContext{metadata: md, Package: "metadata"}); err != nil {
+		return fmt.Errorf("failed executing template: %w", err)
+	}
+
+	formatted, err := format.Source(buf.Bytes())
+
+	if err != nil {
+		errstr := strings.Builder{}
+		_, _ = fmt.Fprintf(&errstr, "failed formatting source: %v", err)
+		errstr.WriteString("--- BEGIN SOURCE ---")
+		errstr.Write(buf.Bytes())
+		errstr.WriteString("--- END SOURCE ---")
+		return errors.New(errstr.String())
+	}
+
+	outputDir := filepath.Join(ymlDir, "internal", "metadata")
+	if err := os.MkdirAll(outputDir, 0700); err != nil {
+		return fmt.Errorf("unable to create output directory %q: %w", outputDir, err)
+	}
+	outputFilepath := filepath.Join(outputDir, factoryOutputFile)
+	if err := os.Remove(outputFilepath); err != nil && !errors.Is(err, os.ErrNotExist) {
+		return fmt.Errorf("unable to remove genererated file %q: %w", outputFilepath, err)
+	}
+	if err := os.WriteFile(outputFilepath, formatted, 0600); err != nil {
+		return fmt.Errorf("failed writing %q: %w", outputFilepath, err)
 	}
 
 	return nil

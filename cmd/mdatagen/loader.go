@@ -153,6 +153,12 @@ type attribute struct {
 type metadata struct {
 	// Name of the component.
 	Name string `validate:"notblank"`
+	// Stability level of the component.
+	Stability string `validate:"notblank"`
+	// Telemetry types supported by the component.
+	Telemetry []string `validate:"notblank"`
+	// Distributions containiner the component.
+	Distributions map[string]string `validate:"notblank"`
 	// SemConvVersion is a version number of OpenTelemetry semantic conventions applied to the scraped metrics.
 	SemConvVersion string `mapstructure:"sem_conv_version"`
 	// ResourceAttributes that can be emitted by the component.

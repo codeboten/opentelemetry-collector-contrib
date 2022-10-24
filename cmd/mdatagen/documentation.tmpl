@@ -2,6 +2,12 @@
 
 # {{ .Name }}
 
+| Status | |
+| -- | -- |
+| Stability | [{{ .Stability }}] |
+| Supported pipeline types | {{ range $index, $element := .Telemetry }}{{ if $index }}, {{ end }}{{ $element }}{{ end }} |
+| Distributions | {{ $first := true }}{{ range $name, $url := .Distributions }}{{ if not $first }}, {{ end }}[{{ $name }}]{{ $first = false }}{{ end }} |
+
 ## Metrics
 
 These are the metrics available for this scraper.
@@ -40,4 +46,9 @@ metrics:
 | ---- | ----------- | ------ |
 {{- range $attributeName, $attributeInfo := .Attributes }}
 | {{ $attributeName }}{{- if $attributeInfo.Value }} ({{ $attributeInfo.Value }}){{- end}} | {{ $attributeInfo.Description }} | {{ stringsJoin $attributeInfo.Enum ", " }} |
+{{- end }}
+
+[{{ .Stability }}]: https://github.com/open-telemetry/opentelemetry-collector#{{ .Stability }}
+{{- range $index, $element := .Distributions }}
+[{{ $index }}]: {{ $element }}
 {{- end }}

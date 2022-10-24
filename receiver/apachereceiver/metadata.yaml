@@ -1,4 +1,9 @@
 name: apachereceiver
+stability: beta
+telemetry:
+  - metrics
+distributions:
+  contrib: https://github.com/open-telemetry/opentelemetry-collector-releases/tree/main/distributions/otelcol-contrib
 
 attributes:
   server_name:
