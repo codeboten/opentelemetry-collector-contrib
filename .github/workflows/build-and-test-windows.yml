@@ -59,8 +59,7 @@ jobs:
         uses: codeboten/github-action-to-otlp@v1
         with:
           endpoint: 'ingest.lightstep.com:443'
-          headers:
-            - "lightstep-access-token": ${{ secrets.STATS_TOKEN }}
+          headers: "lightstep-access-token=${{ secrets.STATS_TOKEN }}"
   windows-unittest:
     if: ${{ always() }}
     runs-on: windows-latest
