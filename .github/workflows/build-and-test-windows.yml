@@ -55,6 +55,12 @@ jobs:
         run: make -j2 gomoddownload GROUP=${{ matrix.group }}
       - name: Run Unit tests
         run: make -j2 gotest GROUP=${{ matrix.group }}
+      - name: Record run details
+        uses: codeboten/github-action-to-otlp@v1
+        with:
+          endpoint: 'ingest.lightstep.com:443'
+          headers:
+            - "lightstep-access-token": ${{ secrets.STATS_TOKEN }}
   windows-unittest:
     if: ${{ always() }}
     runs-on: windows-latest
