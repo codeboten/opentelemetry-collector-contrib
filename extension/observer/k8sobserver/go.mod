@@ -11,7 +11,7 @@ require (
 	go.opentelemetry.io/collector/confmap v0.69.2-0.20230112233839-f2a0133bf677
 	go.uber.org/zap v1.24.0
 	k8s.io/api v0.26.0
-	k8s.io/apimachinery v0.26.0
+	k8s.io/apimachinery v0.26.1
 	k8s.io/client-go v0.26.0
 )
 
