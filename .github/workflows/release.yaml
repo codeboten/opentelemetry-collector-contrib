@@ -1,0 +1,33 @@
+name: Automation - Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      candidate-beta:
+        required: true
+        description: Release candidate version (beta, like 0.70.0)
+
+      git-commit:
+        require: true
+        description: Changelog update commit (like 2b9639707)
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      # Create a branch named release/<release-series> (e.g. release/v0.45.x) in Contrib from the changelog update commit and push it to open-telemetry/opentelemetry-collector-contrib.
+      - name: Push release branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: open-telemetry/opentelemetry-collector-contrib
+          COMMIT: "${{ inputs.git-commit }}"
+          CANDIDATE_STABLE: "${{ inputs.candidate-stable }}"
+          CANDIDATE_BETA: "${{ inputs.candidate-beta }}"
+        run: ./.github/workflows/scripts/release-create-branch.sh
+      # Tag all the module groups (contrib-base) with the new release version by running the make push-tags MODSET=contrib-base command. Wait for the new tag build to pass successfully.
+      - name: Push tags for contrib-base modules
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MODSET: contrib-base
+        run: ./.github/workflows/scripts/release-push-tags.sh
