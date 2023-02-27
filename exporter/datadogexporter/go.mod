@@ -23,7 +23,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filelogreceiver v0.72.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver v0.72.0
 	github.com/patrickmn/go-cache v2.1.0+incompatible
-	github.com/stretchr/testify v1.8.1
+	github.com/stretchr/testify v1.8.2
 	go.opentelemetry.io/collector v0.72.0
 	go.opentelemetry.io/collector/component v0.72.0
 	go.opentelemetry.io/collector/confmap v0.72.0
