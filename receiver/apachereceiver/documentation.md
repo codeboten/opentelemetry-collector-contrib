@@ -2,6 +2,12 @@
 
 # apachereceiver
 
+| Status                   |           |
+| ------------------------ |-----------|
+| Stability                | [beta]   |
+| Supported pipeline types | metrics   |
+| Distributions            | [contrib] |
+
 ## Default Metrics
 
 The following metrics are emitted by default. Each of them can be disabled by applying the following configuration:
@@ -135,3 +141,7 @@ The number of workers currently attached to the HTTP server.
 | ---- | ----------- | ------ | ------- |
 | apache.server.name | The name of the Apache HTTP server. | Any Str | true |
 | apache.server.port | The port of the Apache HTTP server. | Any Str | true |
+
+[beta]: https://github.com/open-telemetry/opentelemetry-collector#beta
+
+[contrib]: https://github.com/open-telemetry/opentelemetry-collector-releases/tree/main/distributions/otelcol-contrib
