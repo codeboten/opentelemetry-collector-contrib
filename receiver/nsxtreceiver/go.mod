@@ -6,7 +6,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal v0.73.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatatest v0.73.0
 	github.com/stretchr/testify v1.8.2
-	github.com/vmware/go-vmware-nsxt v0.0.0-20220328155605-f49a14c1ef5f
+	github.com/vmware/go-vmware-nsxt v0.0.0-20230223012718-d31b8a1ca05e
 	go.opentelemetry.io/collector v0.73.0
 	go.opentelemetry.io/collector/component v0.73.0
 	go.opentelemetry.io/collector/confmap v0.73.0
