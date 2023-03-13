@@ -6,7 +6,7 @@ require (
 	github.com/DataDog/agent-payload/v5 v5.0.76
 	github.com/DataDog/datadog-agent/pkg/trace v0.43.0-rc.3.0.20230227093656-ca3af9ce4c3c
 	github.com/DataDog/datadog-api-client-go/v2 v2.9.0
-	github.com/DataDog/gohai v0.0.0-20220718130825-1776f9beb9cc
+	github.com/DataDog/gohai v0.0.0-20230228204241-3b50954bd1c8
 	github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes v0.1.2
 	github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/metrics v0.1.2
 	github.com/DataDog/opentelemetry-mapping-go/pkg/quantile v0.1.2
