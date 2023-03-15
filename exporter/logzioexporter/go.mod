@@ -16,7 +16,7 @@ require (
 	go.opentelemetry.io/collector/pdata v1.0.0-rc7
 	go.opentelemetry.io/collector/semconv v0.73.0
 	go.uber.org/zap v1.24.0
-	google.golang.org/genproto v0.0.0-20230110181048-76db0878b65f
+	google.golang.org/genproto v0.0.0-20230306155012-7f2fa6fef1f4
 	google.golang.org/protobuf v1.28.1
 )
 
