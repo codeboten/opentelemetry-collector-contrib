@@ -3,7 +3,7 @@ module github.com/open-telemetry/opentelemetry-collector-contrib/testbed/mockdat
 go 1.19
 
 require (
-	github.com/DataDog/datadog-agent/pkg/trace/exportable v0.0.0-20201016145401-4646cf596b02
+	github.com/DataDog/datadog-agent/pkg/trace/exportable bd9dc2299ad5
 	github.com/tinylib/msgp v1.1.8
 	go.opentelemetry.io/collector v0.73.0
 	go.opentelemetry.io/collector/component v0.73.0
