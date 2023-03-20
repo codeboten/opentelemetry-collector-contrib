@@ -6,6 +6,7 @@
   "extends": [
     "config:base"
   ],
+  "forkProcessing": "enabled",
   "groupName": "all dependencies",
   "groupSlug": "all",
   "lockFileMaintenance": {
