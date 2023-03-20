@@ -6,11 +6,19 @@
   "extends": [
     "config:base"
   ],
-  "postUpgradeTasks": {
-    "commands": [
-      "make gotidy"
-    ],
-    "fileFilters": [],
-    "executionMode": "update"
-  }
+  "groupName": "all dependencies",
+  "groupSlug": "all",
+  "lockFileMaintenance": {
+    "enabled": false
+  },
+  "packageRules": [
+    {
+      "groupName": "all dependencies",
+      "groupSlug": "all",
+      "matchPackagePatterns": [
+        "*"
+      ]
+    }
+  ],
+  "separateMajorMinor": false
 }
