@@ -21,5 +21,8 @@
       ]
     }
   ],
-  "separateMajorMinor": false
+  "separateMajorMinor": true,
+  "postUpdateOptions": [
+    "gomodTidy1.19"
+  ]
 }
