@@ -24,5 +24,6 @@
   "separateMajorMinor": true,
   "postUpdateOptions": [
     "gomodTidy1.19"
-  ]
+  ],
+  "updatePinnedDependencies": false
 }
