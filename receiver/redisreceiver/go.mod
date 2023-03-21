@@ -3,7 +3,7 @@ module github.com/open-telemetry/opentelemetry-collector-contrib/receiver/redisr
 go 1.19
 
 require (
-	github.com/go-redis/redis/v7 v7.4.1
+	github.com/go-redis/redis/v9 v9.0.2
 	github.com/stretchr/testify v1.8.2
 	github.com/testcontainers/testcontainers-go v0.19.0
 	go.opentelemetry.io/collector v0.74.0

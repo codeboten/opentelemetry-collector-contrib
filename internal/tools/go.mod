@@ -8,7 +8,8 @@ require (
 	github.com/golangci/golangci-lint v1.51.1
 	github.com/google/addlicense v1.1.1
 	github.com/jcchavezs/porto v0.4.0
-	github.com/jstemmer/go-junit-report v1.0.0
+	github.com/jstemmer/go-junit-report v0.9.1
+	github.com/jstemmer/go-junit-report/v2 v2.0.0
 	go.opentelemetry.io/build-tools/checkdoc v0.6.0
 	go.opentelemetry.io/build-tools/chloggen v0.6.0
 	go.opentelemetry.io/build-tools/crosslink v0.6.0

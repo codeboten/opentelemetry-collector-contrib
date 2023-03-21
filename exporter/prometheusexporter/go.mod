@@ -10,7 +10,7 @@ require (
 	github.com/prometheus/client_golang v1.14.0
 	github.com/prometheus/client_model v0.3.0
 	github.com/prometheus/common v0.42.0
-	github.com/prometheus/prometheus v0.42.1-0.20230210113933-af1d9e01c7e4
+	github.com/prometheus/prometheus v2.5.0+incompatible
 	github.com/stretchr/testify v1.8.2
 	go.opentelemetry.io/collector v0.74.0
 	go.opentelemetry.io/collector/component v0.74.0
@@ -20,7 +20,7 @@ require (
 	go.opentelemetry.io/collector/receiver v0.74.0
 	go.opentelemetry.io/collector/semconv v0.74.0
 	go.uber.org/zap v1.24.0
-	gopkg.in/yaml.v2 v2.4.0
+	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (

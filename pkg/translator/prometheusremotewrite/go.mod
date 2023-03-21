@@ -6,7 +6,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal v0.74.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/prometheus v0.74.0
 	github.com/prometheus/common v0.42.0
-	github.com/prometheus/prometheus v0.42.1-0.20230210113933-af1d9e01c7e4
+	github.com/prometheus/prometheus v2.5.0+incompatible
 	github.com/stretchr/testify v1.8.2
 	go.opentelemetry.io/collector/pdata v1.0.0-rc8
 	go.opentelemetry.io/collector/semconv v0.74.0

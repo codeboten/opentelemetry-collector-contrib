@@ -5,14 +5,14 @@ go 1.19
 require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.74.0
 	github.com/prometheus/common v0.42.0
-	github.com/prometheus/prometheus v0.42.1-0.20230210113933-af1d9e01c7e4
+	github.com/prometheus/prometheus v2.5.0+incompatible
 	github.com/stretchr/testify v1.8.2
 	go.opentelemetry.io/collector v0.74.0
 	go.opentelemetry.io/collector/component v0.74.0
 	go.opentelemetry.io/collector/confmap v0.74.0
 	go.opentelemetry.io/collector/consumer v0.74.0
 	go.opentelemetry.io/collector/receiver v0.74.0
-	k8s.io/client-go v0.26.2
+	k8s.io/client-go v11.0.0+incompatible
 )
 
 require (
