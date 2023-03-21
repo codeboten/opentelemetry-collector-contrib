@@ -56,7 +56,7 @@ require (
 	golang.org/x/net v0.8.0 // indirect
 	golang.org/x/sys v0.6.0 // indirect
 	golang.org/x/text v0.8.0 // indirect
-	google.golang.org/genproto v0.0.0-20230124163310-31e0e69b6fc2 // indirect
+	google.golang.org/genproto v0.0.0-20230209215440-0dfe4f8abfcc // indirect
 	google.golang.org/protobuf v1.29.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
@@ -65,13 +65,13 @@ require (
 //        cloud.google.com/go
 //        cloud.google.com/go/compute
 // Force cloud.google.com/go to be at least v0.100.2, so that the metadata is not present.
-replace cloud.google.com/go => cloud.google.com/go v0.100.2
+replace cloud.google.com/go => cloud.google.com/go v0.110.0
 
 // ambiguous import: found package cloud.google.com/go/compute/metadata in multiple modules:
 //         cloud.google.com/go/compute v1.10.0 (/Users/alex.boten/workspace/lightstep/go/pkg/mod/cloud.google.com/go/compute@v1.10.0/metadata)
 //         cloud.google.com/go/compute/metadata v0.2.1 (/Users/alex.boten/workspace/lightstep/go/pkg/mod/cloud.google.com/go/compute/metadata@v0.2.1)
 // Force cloud.google.com/go/compute to be at least v1.12.1.
-replace cloud.google.com/go/compute => cloud.google.com/go/compute v1.12.1
+replace cloud.google.com/go/compute => cloud.google.com/go/compute v1.18.0
 
 replace github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal => ../../internal/coreinternal
 

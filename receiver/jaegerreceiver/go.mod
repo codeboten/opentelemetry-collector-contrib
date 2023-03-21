@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/apache/thrift v0.18.1
 	github.com/gorilla/mux v1.8.0
-	github.com/jaegertracing/jaeger v1.41.0
+	github.com/jaegertracing/jaeger v1.43.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/common v0.74.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/jaeger v0.74.0
 	github.com/stretchr/testify v1.8.2
@@ -66,7 +66,7 @@ require (
 //         cloud.google.com/go/compute v1.10.0 (/Users/alex.boten/workspace/lightstep/go/pkg/mod/cloud.google.com/go/compute@v1.10.0/metadata)
 //         cloud.google.com/go/compute/metadata v0.2.1 (/Users/alex.boten/workspace/lightstep/go/pkg/mod/cloud.google.com/go/compute/metadata@v0.2.1)
 // Force cloud.google.com/go/compute to be at least v1.12.1.
-replace cloud.google.com/go/compute => cloud.google.com/go/compute v1.12.1
+replace cloud.google.com/go/compute => cloud.google.com/go/compute v1.18.0
 
 replace github.com/open-telemetry/opentelemetry-collector-contrib/internal/common => ../../internal/common
 

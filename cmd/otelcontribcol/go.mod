@@ -997,7 +997,7 @@ replace github.com/open-telemetry/opentelemetry-collector-contrib/receiver/sshch
 
 replace github.com/open-telemetry/opentelemetry-collector-contrib/receiver/datadogreceiver => ../../receiver/datadogreceiver
 
-replace github.com/mattn/go-ieproxy => github.com/mattn/go-ieproxy v0.0.1
+replace github.com/mattn/go-ieproxy => github.com/mattn/go-ieproxy v0.0.10
 
 replace github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatatest => ../../pkg/pdatatest
 
