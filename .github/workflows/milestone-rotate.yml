@@ -1,16 +1,14 @@
-# This action adds the "next release" milestone to a pull request
-# when it is merged. The milestone is rotated when a new release
-# is published via the "Project: Rotate Milestone" action
+# This action updates the "next release" milestone
+# to the latest released version and creates a new milestone
+# named "next release" in its place
 
-name: 'Project: Add PR to Milestone'
+name: 'Project: Rotate Milestone'
 on:
-  pull_request:
-    types:
-      - closed
+  release:
+    types: [published]
 
 jobs:
-  update-pr:
-    if: github.event.pull_request.merged
+  rotate-milestone:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v6
@@ -24,12 +22,18 @@ jobs:
             })
             for (const milestone of milestones.data) {
               if (milestone.title == "next release") {
-                await github.rest.issues.update({
+                await github.rest.issues.updateMilestone({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  issue_number: context.issue.number,
-                  milestone: milestone.number
+                  milestone_number: milestone.number,
+                  title: context.event.release.tag_name
+                });
+                await github.rest.issues.createMilestone({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  title: "next release",
                 });
                 return
               }
             }
+          
