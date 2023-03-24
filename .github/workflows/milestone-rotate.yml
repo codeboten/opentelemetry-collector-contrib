@@ -25,12 +25,12 @@ jobs:
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   milestone_number: milestone.number,
-                  title: ${{ github.event.release.tag_name }}
+                  title: "${{ github.event.release.tag_name }}"
                 });
                 await github.rest.issues.createMilestone({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  title: "next release",
+                  title: "next release"
                 });
                 return
               }
