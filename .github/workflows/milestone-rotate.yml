@@ -13,7 +13,6 @@ jobs:
     steps:
       - uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.OPENTELEMETRYBOT_GITHUB_TOKEN }}
           script: |
             const milestones = await github.rest.issues.listMilestones({
               owner: context.repo.owner,
