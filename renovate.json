@@ -4,5 +4,10 @@
   "labels": ["dependencies"],
   "extends": [
     "config:base"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["dockerfile", "docker-compose", "github-actions"]
+    }
   ]
 }
