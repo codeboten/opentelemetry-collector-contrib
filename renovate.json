@@ -21,7 +21,7 @@
     },
     {
       "matchManagers": ["gomod"],
-      "enabled": false
+      "groupName": "go modules deps"
     }
   ]
 }
