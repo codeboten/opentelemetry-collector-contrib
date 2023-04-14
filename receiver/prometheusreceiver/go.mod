@@ -11,7 +11,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatautil v0.75.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/prometheus v0.75.0
 	github.com/prometheus/common v0.42.0
-	github.com/prometheus/prometheus v0.43.0
+	github.com/prometheus/prometheus v2.5.0+incompatible
 	github.com/stretchr/testify v1.8.2
 	go.opentelemetry.io/collector v0.75.0
 	go.opentelemetry.io/collector/component v0.75.0
@@ -25,7 +25,7 @@ require (
 	go.opentelemetry.io/collector/semconv v0.75.0
 	go.uber.org/zap v1.24.0
 	google.golang.org/protobuf v1.30.0
-	gopkg.in/yaml.v2 v2.4.0
+	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (

@@ -4,7 +4,8 @@ module github.com/open-telemetry/opentelemetry-collector-contrib/processor/spanm
 go 1.19
 
 require (
-	github.com/hashicorp/golang-lru v0.6.0
+	github.com/hashicorp/golang-lru v0.5.1
+	github.com/hashicorp/golang-lru/v2 v2.0.2
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal v0.75.0
 	github.com/stretchr/testify v1.8.2
 	github.com/tilinna/clock v1.1.0
