@@ -4,12 +4,12 @@ go 1.19
 
 require (
 	bitbucket.org/atlassian/go-asap/v2 v2.6.0
-	github.com/SermoDigital/jose v0.9.2-0.20161205224733-f6df55f235c2
+	github.com/SermoDigital/jose v0.9.2-0.20180104203859-803625baeddc
 	github.com/stretchr/testify v1.8.2
 	go.opentelemetry.io/collector v0.75.0
 	go.opentelemetry.io/collector/component v0.75.0
 	go.opentelemetry.io/collector/confmap v0.75.0
-	go.uber.org/multierr v1.10.0
+	go.uber.org/multierr v1.11.0
 	google.golang.org/grpc v1.54.0
 )
 

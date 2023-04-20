@@ -181,7 +181,7 @@ require (
 	go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.75.0
 	go.opentelemetry.io/collector/receiver v0.75.0
 	go.opentelemetry.io/collector/receiver/otlpreceiver v0.75.0
-	golang.org/x/sys v0.6.0
+	golang.org/x/sys v0.7.0
 )
 
 require (
@@ -1019,7 +1019,7 @@ replace github.com/open-telemetry/opentelemetry-collector-contrib/exporter/parqu
 
 replace github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer/ecstaskobserver => ../../extension/observer/ecstaskobserver
 
-replace github.com/mattn/go-ieproxy => github.com/mattn/go-ieproxy v0.0.1
+replace github.com/mattn/go-ieproxy => github.com/mattn/go-ieproxy v0.0.10
 
 replace github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatatest => ../../pkg/pdatatest
 

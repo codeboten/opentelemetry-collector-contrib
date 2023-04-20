@@ -3,9 +3,9 @@ module github.com/open-telemetry/opentelemetry-collector-contrib/processor/datad
 go 1.19
 
 require (
-	github.com/DataDog/datadog-agent/pkg/trace v0.44.0-rc.5
-	github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/metrics v0.1.4
-	github.com/DataDog/sketches-go v1.4.1
+	github.com/DataDog/datadog-agent/pkg/trace v0.44.0-rc.7
+	github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/metrics v0.1.5
+	github.com/DataDog/sketches-go v1.4.2
 	github.com/stretchr/testify v1.8.2
 	go.opentelemetry.io/collector v0.75.0
 	go.opentelemetry.io/collector/component v0.75.0
@@ -17,16 +17,16 @@ require (
 )
 
 require (
-	github.com/DataDog/datadog-agent/pkg/obfuscate v0.44.0-rc.5 // indirect
-	github.com/DataDog/datadog-agent/pkg/remoteconfig/state v0.44.0-rc.5 // indirect
-	github.com/DataDog/datadog-agent/pkg/util/cgroups v0.44.0-rc.5 // indirect
-	github.com/DataDog/datadog-agent/pkg/util/log v0.44.0-rc.5 // indirect
-	github.com/DataDog/datadog-agent/pkg/util/pointer v0.44.0-rc.5 // indirect
-	github.com/DataDog/datadog-agent/pkg/util/scrubber v0.44.0-rc.5 // indirect
+	github.com/DataDog/datadog-agent/pkg/obfuscate v0.44.0-rc.7 // indirect
+	github.com/DataDog/datadog-agent/pkg/remoteconfig/state v0.44.0-rc.7 // indirect
+	github.com/DataDog/datadog-agent/pkg/util/cgroups v0.44.0-rc.7 // indirect
+	github.com/DataDog/datadog-agent/pkg/util/log v0.44.0-rc.7 // indirect
+	github.com/DataDog/datadog-agent/pkg/util/pointer v0.44.0-rc.7 // indirect
+	github.com/DataDog/datadog-agent/pkg/util/scrubber v0.44.0-rc.7 // indirect
 	github.com/DataDog/datadog-go/v5 v5.1.1 // indirect
 	github.com/DataDog/go-tuf v0.3.0--fix-localmeta-fork // indirect
-	github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes v0.1.4 // indirect
-	github.com/DataDog/opentelemetry-mapping-go/pkg/quantile v0.1.4 // indirect
+	github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes v0.1.5 // indirect
+	github.com/DataDog/opentelemetry-mapping-go/pkg/quantile v0.1.5 // indirect
 	github.com/Microsoft/go-winio v0.5.2 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/cihub/seelog v0.0.0-20170130134532-f561c5e57575 // indirect
@@ -34,7 +34,7 @@ require (
 	github.com/coreos/go-systemd/v22 v22.3.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/docker/go-units v0.4.0 // indirect
-	github.com/dustin/go-humanize v1.0.0 // indirect
+	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/godbus/dbus/v5 v5.0.6 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect

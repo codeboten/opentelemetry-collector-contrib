@@ -3,10 +3,10 @@ module github.com/open-telemetry/opentelemetry-collector-contrib/exporter/lokiex
 go 1.19
 
 require (
-	github.com/cenkalti/backoff/v4 v4.2.0
+	github.com/cenkalti/backoff/v4 v4.2.1
 	github.com/gogo/protobuf v1.3.2
 	github.com/golang/snappy v0.0.4
-	github.com/grafana/loki/pkg/push v0.0.0-20230127072203-4e8cc8d71928
+	github.com/grafana/loki/pkg/push v0.0.0-20230420120627-af896eb5f6d6
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/common v0.75.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal v0.75.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/loki v0.75.0
@@ -19,7 +19,7 @@ require (
 	go.opentelemetry.io/collector/exporter v0.75.0
 	go.opentelemetry.io/collector/pdata v1.0.0-rc9
 	go.opentelemetry.io/collector/semconv v0.75.0
-	go.uber.org/multierr v1.10.0
+	go.uber.org/multierr v1.11.0
 	go.uber.org/zap v1.24.0
 )
 

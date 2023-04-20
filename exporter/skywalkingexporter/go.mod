@@ -3,7 +3,7 @@ module github.com/open-telemetry/opentelemetry-collector-contrib/exporter/skywal
 go 1.19
 
 require (
-	github.com/cenkalti/backoff/v4 v4.2.0
+	github.com/cenkalti/backoff/v4 v4.2.1
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/common v0.75.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal v0.75.0
 	github.com/stretchr/testify v1.8.2
@@ -15,7 +15,7 @@ require (
 	go.opentelemetry.io/collector/pdata v1.0.0-rc9
 	go.opentelemetry.io/collector/semconv v0.75.0
 	google.golang.org/grpc v1.54.0
-	skywalking.apache.org/repo/goapi v0.0.0-20211122071111-ffc517fbfe21
+	skywalking.apache.org/repo/goapi v0.0.0-20230314034821-0c5a44bb767a
 )
 
 require (

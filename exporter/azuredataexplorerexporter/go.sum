@@ -3,6 +3,8 @@ cloud.google.com/go v0.34.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMT
 contrib.go.opencensus.io/exporter/prometheus v0.4.2 h1:sqfsYl5GIY/L570iT+l93ehxaWJs2/OwXtiWwew3oAg=
 github.com/Azure/azure-kusto-go v0.11.3 h1:pwvTywFIJx0iQfsOZAkr2dE/tmxkO4Y9xEaiR7BYFz0=
 github.com/Azure/azure-kusto-go v0.11.3/go.mod h1:ZwRCqNeqib470cw1fwk86gh0loafuoR0vNWh8JimKLk=
+github.com/Azure/azure-kusto-go v0.99.10 h1:QqGKuDrjObMJSQ9t3+rw6f347kLBGUOVbOAEmyXdUSw=
+github.com/Azure/azure-kusto-go v0.99.10/go.mod h1:ZwRCqNeqib470cw1fwk86gh0loafuoR0vNWh8JimKLk=
 github.com/Azure/azure-pipeline-go v0.1.8/go.mod h1:XA1kFWRVhSK+KNFiOhfv83Fv8L9achrP7OxIzeTn1Yg=
 github.com/Azure/azure-pipeline-go v0.2.3 h1:7U9HBg1JFK3jHl5qmo4CTZKFTVgMwdFHMVtCdfBE21U=
 github.com/Azure/azure-pipeline-go v0.2.3/go.mod h1:x841ezTBIMG6O3lAcl8ATHnsOPVl2bqk7S3ta6S6u4k=

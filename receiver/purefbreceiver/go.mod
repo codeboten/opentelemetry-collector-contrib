@@ -13,7 +13,7 @@ require (
 	go.opentelemetry.io/collector/confmap v0.75.0
 	go.opentelemetry.io/collector/consumer v0.75.0
 	go.opentelemetry.io/collector/receiver v0.75.0
-	go.uber.org/multierr v1.10.0
+	go.uber.org/multierr v1.11.0
 )
 
 require (

@@ -11,8 +11,8 @@ require (
 	go.opentelemetry.io/collector v0.75.0
 	go.opentelemetry.io/collector/component v0.75.0
 	go.opentelemetry.io/collector/receiver/otlpreceiver v0.75.0
-	golang.org/x/mod v0.9.0
-	golang.org/x/text v0.8.0
+	golang.org/x/mod v0.10.0
+	golang.org/x/text v0.9.0
 	gopkg.in/yaml.v2 v2.4.0
 )
 
@@ -391,7 +391,7 @@ require (
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/gosnmp/gosnmp v1.35.0 // indirect
-	github.com/grafana/loki/pkg/push v0.0.0-20230127102416-571f88bc5765 // indirect; indirectq
+	github.com/grafana/loki/pkg/push af896eb5f6d6 // indirect; indirectq
 	github.com/grafana/regexp v0.0.0-20221122212121-6b5c0a4cb7fd // indirect
 	github.com/grobie/gomemcache v0.0.0-20180201122607-1f779c573665 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.2 // indirect
@@ -1026,7 +1026,7 @@ replace github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipki
 replace github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zookeeperreceiver => ../../receiver/zookeeperreceiver
 
 // see https://github.com/mattn/go-ieproxy/issues/45
-replace github.com/mattn/go-ieproxy => github.com/mattn/go-ieproxy v0.0.1
+replace github.com/mattn/go-ieproxy => github.com/mattn/go-ieproxy v0.0.10
 
 // see https://github.com/google/gnostic/issues/262
 replace github.com/googleapis/gnostic v0.5.6 => github.com/googleapis/gnostic v0.5.5

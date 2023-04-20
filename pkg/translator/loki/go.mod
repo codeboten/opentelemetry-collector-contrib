@@ -3,8 +3,8 @@ module github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/
 go 1.19
 
 require (
-	github.com/go-logfmt/logfmt v0.5.1
-	github.com/grafana/loki/pkg/push v0.0.0-20230127072203-4e8cc8d71928
+	github.com/go-logfmt/logfmt v0.6.0
+	github.com/grafana/loki/pkg/push v0.0.0-20230420120627-af896eb5f6d6
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal v0.75.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/prometheus v0.75.0
 	github.com/prometheus/common v0.42.0

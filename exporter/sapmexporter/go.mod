@@ -3,8 +3,8 @@ module github.com/open-telemetry/opentelemetry-collector-contrib/exporter/sapmex
 go 1.19
 
 require (
-	github.com/cenkalti/backoff/v4 v4.2.0
-	github.com/jaegertracing/jaeger v1.41.0
+	github.com/cenkalti/backoff/v4 v4.2.1
+	github.com/jaegertracing/jaeger v1.44.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk v0.75.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/batchperresourceattr v0.75.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/jaeger v0.75.0

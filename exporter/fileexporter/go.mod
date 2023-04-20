@@ -3,7 +3,7 @@ module github.com/open-telemetry/opentelemetry-collector-contrib/exporter/fileex
 go 1.19
 
 require (
-	github.com/klauspost/compress v1.16.3
+	github.com/klauspost/compress v1.16.5
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal v0.75.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/sharedcomponent v0.75.0
 	github.com/stretchr/testify v1.8.2
@@ -12,7 +12,7 @@ require (
 	go.opentelemetry.io/collector/consumer v0.75.0
 	go.opentelemetry.io/collector/exporter v0.75.0
 	go.opentelemetry.io/collector/pdata v1.0.0-rc9
-	go.uber.org/multierr v1.10.0
+	go.uber.org/multierr v1.11.0
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
 )
 
