@@ -31,7 +31,8 @@
       },
       {
         "matchManagers": ["gomod"],
-        "enabled": false
+        "groupName": "gomod deps"
       }
-    ]
+    ],
+    "postUpdateOptions": ["gomodMassage"]
   }
