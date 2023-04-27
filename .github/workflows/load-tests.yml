@@ -15,6 +15,12 @@ env:
   # Cache downloads for this workflow consistently run in under 2 minutes
   SEGMENT_DOWNLOAD_TIMEOUT_MINS: 5
 
+permissions:
+  # deployments permission to deploy GitHub pages website
+  deployments: write
+  # contents permission to update benchmark contents in gh-pages branch
+  contents: write
+
 jobs:
   setup-environment:
     timeout-minutes: 30
@@ -105,3 +111,15 @@ jobs:
       - name: GitHub Issue Generator
         if: ${{ failure() && github.ref == 'refs/heads/main' }}
         run: issuegenerator $TEST_RESULTS
+      # gh-pages branch is updated and pushed automatically with extracted benchmark data
+      - name: Store benchmark result
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          name: OpenTelemetry Collecto Contrib Benchmark
+          tool: 'go'
+          output-file-path: testbed/tests/results/junit/results.xml
+          # Access token to deploy GitHub Pages branch
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # Push and deploy GitHub pages branch automatically
+          auto-push: true
