@@ -1,4 +1,4 @@
-name: build-and-test-windows
+name: "Process: tidy"
 on:
   pull_request:
     types: [labeled, unlabeled]
