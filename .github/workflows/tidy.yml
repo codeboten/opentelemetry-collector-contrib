@@ -34,4 +34,4 @@ jobs:
           make gotidy
           git config user.name opentelemetrybot
           git config user.email 107717825+opentelemetrybot@users.noreply.github.com
-          git diff --exit-code || (git add **/go.mod **/go.sum && git commit -m "go mod tidy" && git push ${{ github.head_ref }})
+          git diff --exit-code || (git add . && git commit -m "go mod tidy" && git push ${{ github.head_ref }})
