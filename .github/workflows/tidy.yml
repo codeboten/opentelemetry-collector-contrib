@@ -36,6 +36,7 @@ jobs:
           make gotidy
           git config user.name opentelemetrybot
           git config user.email 107717825+opentelemetrybot@users.noreply.github.com
+          git checkout ${{ github.head_ref }}
           echo "git diff --exit-code || (git add . && git commit -m \"go mod tidy\" && git push origin ${{ github.head_ref }})"
           git diff --exit-code || (git add . && git commit -m "go mod tidy" && git push origin ${{ github.head_ref }})
         env:
