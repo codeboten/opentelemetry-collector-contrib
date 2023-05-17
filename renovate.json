@@ -3,6 +3,7 @@
     "labels": [
       "dependencies"
     ],
+    "forkProcessing": "enabled",
     "extends": [
       "config:base"
     ],
