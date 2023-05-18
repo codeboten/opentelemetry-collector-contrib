@@ -32,7 +32,7 @@
       },
       {
         "matchManagers": ["gomod"],
-        "enabled": false
+        "matchUpdateTypes": ["minor", "major"]
       }
     ],
     "ignoreDeps": [
