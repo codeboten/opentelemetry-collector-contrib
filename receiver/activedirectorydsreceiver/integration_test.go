@@ -1,18 +1,7 @@
 // Copyright The OpenTelemetry Authors
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+// SPDX-License-Identifier: Apache-2.0
 
-//go:build windows && integration
+//go:build windows
 
 package activedirectorydsreceiver
 
@@ -35,6 +24,7 @@ TestIntegration test scraping metrics from a running Active Directory domain con
 The domain controller must be set up locally outside of this test in order for it to pass.
 */
 func TestIntegration(t *testing.T) {
+	t.Skip("See https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/22480")
 	t.Parallel()
 
 	fact := NewFactory()

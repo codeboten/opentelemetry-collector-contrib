@@ -1,43 +1,19 @@
 // Copyright The OpenTelemetry Authors
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+// SPDX-License-Identifier: Apache-2.0
 
 package datasetexporter
 
 import (
 	"fmt"
-	"os"
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/suite"
+	"github.com/stretchr/testify/assert"
 	"go.opentelemetry.io/collector/confmap"
 	"go.opentelemetry.io/collector/exporter/exporterhelper"
 )
 
-type SuiteConfig struct {
-	suite.Suite
-}
-
-func TestSuiteConfig(t *testing.T) {
-	suite.Run(t, new(SuiteConfig))
-}
-
-func (s *SuiteConfig) SetupTest() {
-	os.Clearenv()
-}
-
-func (s *SuiteConfig) TestConfigUnmarshalUnknownAttributes() {
+func TestConfigUnmarshalUnknownAttributes(t *testing.T) {
 	f := NewFactory()
 	config := f.CreateDefaultConfig().(*Config)
 	configMap := confmap.NewFromStringMap(map[string]interface{}{
@@ -50,10 +26,10 @@ func (s *SuiteConfig) TestConfigUnmarshalUnknownAttributes() {
 	unmarshalErr := fmt.Errorf("1 error(s) decoding:\n\n* '' has invalid keys: unknown_attribute")
 	expectedError := fmt.Errorf("cannot unmarshal config: %w", unmarshalErr)
 
-	s.Equal(expectedError.Error(), err.Error())
+	assert.Equal(t, expectedError.Error(), err.Error())
 }
 
-func (s *SuiteConfig) TestConfigUseDefaults() {
+func TestConfigUseDefaults(t *testing.T) {
 	f := NewFactory()
 	config := f.CreateDefaultConfig().(*Config)
 	configMap := confmap.NewFromStringMap(map[string]interface{}{
@@ -61,15 +37,15 @@ func (s *SuiteConfig) TestConfigUseDefaults() {
 		"api_key":     "secret",
 	})
 	err := config.Unmarshal(configMap)
-	s.Nil(err)
+	assert.Nil(t, err)
 
-	s.Equal("https://example.com", config.DatasetURL)
-	s.Equal("secret", string(config.APIKey))
-	s.Equal(bufferMaxLifetime, config.MaxLifetime)
-	s.Equal(tracesMaxWait, config.TracesSettings.MaxWait)
+	assert.Equal(t, "https://example.com", config.DatasetURL)
+	assert.Equal(t, "secret", string(config.APIKey))
+	assert.Equal(t, bufferMaxLifetime, config.MaxLifetime)
+	assert.Equal(t, tracesMaxWait, config.TracesSettings.MaxWait)
 }
 
-func (s *SuiteConfig) TestConfigValidate() {
+func TestConfigValidate(t *testing.T) {
 	tests := []struct {
 		name     string
 		config   Config
@@ -109,18 +85,18 @@ func (s *SuiteConfig) TestConfigValidate() {
 	}
 
 	for _, tt := range tests {
-		s.T().Run(tt.name, func(t *testing.T) {
+		t.Run(tt.name, func(t *testing.T) {
 			err := tt.config.Validate()
 			if err == nil {
-				s.Nil(tt.expected, tt.name)
+				assert.Nil(t, tt.expected, tt.name)
 			} else {
-				s.Equal(tt.expected.Error(), err.Error(), tt.name)
+				assert.Equal(t, tt.expected.Error(), err.Error(), tt.name)
 			}
 		})
 	}
 }
 
-func (s *SuiteConfig) TestConfigString() {
+func TestConfigString(t *testing.T) {
 	config := Config{
 		DatasetURL: "https://example.com",
 		APIKey:     "secret",
@@ -137,7 +113,7 @@ func (s *SuiteConfig) TestConfigString() {
 		TimeoutSettings: exporterhelper.NewDefaultTimeoutSettings(),
 	}
 
-	s.Equal(
+	assert.Equal(t,
 		"DatasetURL: https://example.com; BufferSettings: {MaxLifetime:123ns GroupBy:[field1 field2] RetryInitialInterval:0s RetryMaxInterval:0s RetryMaxElapsedTime:0s}; TracesSettings: {Aggregate:true MaxWait:45s}; RetrySettings: {Enabled:true InitialInterval:5s RandomizationFactor:0.5 Multiplier:1.5 MaxInterval:30s MaxElapsedTime:5m0s}; QueueSettings: {Enabled:true NumConsumers:10 QueueSize:1000 StorageID:<nil>}; TimeoutSettings: {Timeout:5s}",
 		config.String(),
 	)

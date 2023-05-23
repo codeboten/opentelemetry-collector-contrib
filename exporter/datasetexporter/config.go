@@ -1,16 +1,5 @@
 // Copyright The OpenTelemetry Authors
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+// SPDX-License-Identifier: Apache-2.0
 
 package datasetexporter // import "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/datasetexporter"
 
@@ -18,6 +7,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/cenkalti/backoff/v4"
 	"github.com/scalyr/dataset-go/pkg/buffer"
 	"github.com/scalyr/dataset-go/pkg/buffer_config"
 	datasetConfig "github.com/scalyr/dataset-go/pkg/config"
@@ -122,12 +112,14 @@ func (c *Config) convert() (*ExporterConfig, error) {
 				Endpoint: c.DatasetURL,
 				Tokens:   datasetConfig.DataSetTokens{WriteLog: string(c.APIKey)},
 				BufferSettings: buffer_config.DataSetBufferSettings{
-					MaxLifetime:          c.BufferSettings.MaxLifetime,
-					MaxSize:              buffer.LimitBufferSize,
-					GroupBy:              c.BufferSettings.GroupBy,
-					RetryInitialInterval: c.BufferSettings.RetryInitialInterval,
-					RetryMaxInterval:     c.BufferSettings.RetryMaxInterval,
-					RetryMaxElapsedTime:  c.BufferSettings.RetryMaxElapsedTime,
+					MaxLifetime:              c.BufferSettings.MaxLifetime,
+					MaxSize:                  buffer.LimitBufferSize,
+					GroupBy:                  c.BufferSettings.GroupBy,
+					RetryInitialInterval:     c.BufferSettings.RetryInitialInterval,
+					RetryMaxInterval:         c.BufferSettings.RetryMaxInterval,
+					RetryMaxElapsedTime:      c.BufferSettings.RetryMaxElapsedTime,
+					RetryMultiplier:          backoff.DefaultMultiplier,
+					RetryRandomizationFactor: backoff.DefaultRandomizationFactor,
 				},
 			},
 			tracesSettings: c.TracesSettings,
