@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/collector v0.37.1
 	github.com/cenkalti/backoff/v4 v4.2.1
-	github.com/stretchr/testify v1.8.2
+	github.com/stretchr/testify v1.8.3
 	go.opentelemetry.io/collector/component v0.78.2
 	go.opentelemetry.io/collector/confmap v0.78.2
 	go.opentelemetry.io/collector/exporter v0.78.2
