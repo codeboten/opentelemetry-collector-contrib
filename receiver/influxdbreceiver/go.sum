@@ -162,8 +162,8 @@ github.com/hjson/hjson-go/v4 v4.0.0 h1:wlm6IYYqHjOdXH1gHev4VoXCaW20HdQAGCxdOEEg2
 github.com/hjson/hjson-go/v4 v4.0.0/go.mod h1:KaYt3bTw3zhBjYqnXkYywcYctk0A2nxeEFTse3rH13E=
 github.com/influxdata/influxdb-client-go/v2 v2.12.3 h1:28nRlNMRIV4QbtIUvxhWqaxn0IpXeMSkY/uJa/O/vC4=
 github.com/influxdata/influxdb-client-go/v2 v2.12.3/go.mod h1:IrrLUbCjjfkmRuaCiGQg4m2GbkaeJDcuWoxiWdQEbA0=
-github.com/influxdata/influxdb-observability/common v0.3.14 h1:bLiWxXmgum06lpGlaQF+sKgZibQLK/wI46qHtULn8nM=
-github.com/influxdata/influxdb-observability/common v0.3.14/go.mod h1:nOCV0NIPXW0a6k5/Q/sYVR0SbNnrL1LRmj64Nvjwf64=
+github.com/influxdata/influxdb-observability/common v0.5.2 h1:n4/w+cu+Puva0tEodnrb1Rtb50eEzncdwBYsGYk+bXA=
+github.com/influxdata/influxdb-observability/common v0.5.2/go.mod h1:4iLh+a678292K5J4pMh8wf2ZplteKfyGCfjHevgiUl0=
 github.com/influxdata/influxdb-observability/influx2otel v0.3.14 h1:i13/90SFxvYsQvRjEsgS0uAtO4T6PFTRxAPNYzbbbO0=
 github.com/influxdata/influxdb-observability/influx2otel v0.3.14/go.mod h1:Isvc5hqlaIm6AAUVwjNuJ2aIC/1N3irisyPhdwTfrf4=
 github.com/influxdata/influxdb1-client v0.0.0-20220302092344-a9ab5670611c h1:qSHzRbhzK8RdXOsAdfDgO49TtqC1oZ+acxPrkfTxcCs=
@@ -306,8 +306,8 @@ github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UV
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
 github.com/stretchr/testify v1.5.1/go.mod h1:5W2xD1RspED5o8YsWQXVCued0rvSQ+mT+I5cxcmMvtA=
 github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
-github.com/stretchr/testify v1.8.3 h1:RP3t2pwF7cMEbC1dqtB6poj3niw/9gnV4Cjg5oW5gtY=
-github.com/stretchr/testify v1.8.3/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
+github.com/stretchr/testify v1.8.4 h1:CcVxjf3Q8PM0mHUKJCdn+eZZtm5yQwehR5yeSVQQcUk=
+github.com/stretchr/testify v1.8.4/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
 github.com/valyala/bytebufferpool v1.0.0/go.mod h1:6bBcMArwyJ5K/AmCkWv1jt77kVWyCJ6HpOuEn7z0Csc=
 github.com/valyala/fasttemplate v1.0.1/go.mod h1:UQGH1tvbgY+Nz5t2n7tXsz52dQxojPUpymEIMZ47gx8=
 github.com/valyala/fasttemplate v1.2.1/go.mod h1:KHLXt3tVN2HBp8eijSv/kGJopbvo7S+qRAEEKiv+SiQ=
@@ -331,8 +331,8 @@ go.opentelemetry.io/collector/pdata v1.0.0-rcv0012.0.20230525165144-87dd85a6c034
 go.opentelemetry.io/collector/pdata v1.0.0-rcv0012.0.20230525165144-87dd85a6c034/go.mod h1:rEAKFqc1L03lidKtra/2/dJtI0Hp+JsQxuPEIkj/2Vg=
 go.opentelemetry.io/collector/receiver v0.78.3-0.20230525165144-87dd85a6c034 h1:j6ULyliqn6SqAg0VJ+dA/f195vMWDYZqYCPvuBAfuQY=
 go.opentelemetry.io/collector/receiver v0.78.3-0.20230525165144-87dd85a6c034/go.mod h1:zSJ4Y46xti5ZelVWFGwyAeSxDMepuwKS/3c2njMMS8A=
-go.opentelemetry.io/collector/semconv v0.78.3-0.20230525165144-87dd85a6c034 h1:LNX/lzH8eoWTwV48nvCPuun00fpr9sOGET+/QdMM7jk=
-go.opentelemetry.io/collector/semconv v0.78.3-0.20230525165144-87dd85a6c034/go.mod h1:lazBA42nqZPNPWDMiqWfr5eIVeNgRmoLDbQmjXKcm70=
+go.opentelemetry.io/collector/semconv v0.79.0 h1:74pzP4c7xWk9Eihs14kEQvE4m4hHgXrQ/YbWkdn1bVY=
+go.opentelemetry.io/collector/semconv v0.79.0/go.mod h1:TlYPtzvsXyHOgr5eATi43qEMqwSmIziivJB2uctKswo=
 go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.42.0 h1:pginetY7+onl4qN1vl0xW/V/v6OBZ0vVdH+esuJgvmM=
 go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.42.0/go.mod h1:XiYsayHc36K3EByOO6nbAXnAWbrUxdjUROCEeeROOH8=
 go.opentelemetry.io/otel v1.16.0 h1:Z7GVAX/UkAXPKsy94IU+i6thsQS4nb7LviLpnaNeW8s=
