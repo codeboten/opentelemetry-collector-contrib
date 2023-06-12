@@ -6,14 +6,14 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/gorilla/mux v1.8.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/sharedcomponent v0.78.0
-	github.com/stretchr/testify v1.8.3
+	github.com/stretchr/testify v1.8.4
 	go.opentelemetry.io/collector v0.78.3-0.20230525165144-87dd85a6c034
 	go.opentelemetry.io/collector/component v0.78.3-0.20230525165144-87dd85a6c034
 	go.opentelemetry.io/collector/confmap v0.78.3-0.20230525165144-87dd85a6c034
 	go.opentelemetry.io/collector/consumer v0.78.3-0.20230525165144-87dd85a6c034
 	go.opentelemetry.io/collector/pdata v1.0.0-rcv0012.0.20230525165144-87dd85a6c034
 	go.opentelemetry.io/collector/receiver v0.78.3-0.20230525165144-87dd85a6c034
-	go.opentelemetry.io/collector/semconv v0.78.3-0.20230525165144-87dd85a6c034
+	go.opentelemetry.io/collector/semconv v0.79.0
 	go.uber.org/multierr v1.11.0
 	google.golang.org/grpc v1.55.0
 	google.golang.org/protobuf v1.30.0
