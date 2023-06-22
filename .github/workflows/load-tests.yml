@@ -105,6 +105,31 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           path: ./*.tar
+      - run: cp testbed/tests/results/TESTRESULTS.md testbed/tests/results/${{steps.filename.outputs.name}}.md
+      - name: Upload TESTRESULTS
+        uses: actions/upload-artifact@v3
+        with:
+          name: TESTRESULTS
+          path: testbed/tests/results/${{steps.filename.outputs.name}}.md
+        
       - name: GitHub Issue Generator
         if: ${{ failure() && github.ref == 'refs/heads/main' }}
         run: issuegenerator $TEST_RESULTS
+
+  update-benchmarks:
+    runs-on: ubuntu-latest
+    needs: [loadtest]
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: TESTRESULTS
+          path: results
+      - run: find .
+      - uses: benchmark-action/github-action-benchmark@v1
+        with:
+          tool: 'go'
+          output-file-path: output.txt
+          gh-pages-branch: gh-pages
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          benchmark-data-dir-path: "docs/loadtest"
+          auto-push: true # TODO: this should only push on updates to main
