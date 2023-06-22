@@ -124,7 +124,7 @@ jobs:
         with:
           name: TESTRESULTS
           path: results
-      - run: jq -s 'map(.[])' results/*
+      - run: jq -s 'map(.[])' results/* > output.txt
       - uses: benchmark-action/github-action-benchmark@v1
         with:
           tool: 'go'
