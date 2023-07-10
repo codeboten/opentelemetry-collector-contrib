@@ -16,7 +16,7 @@ require (
 	go.opencensus.io v0.24.0
 	go.opentelemetry.io/collector v0.80.0
 	go.opentelemetry.io/collector/component v0.80.0
-	go.opentelemetry.io/collector/config/configtls v0.80.0
+	go.opentelemetry.io/collector/config/configtls v0.81.0
 	go.opentelemetry.io/collector/confmap v0.80.0
 	go.opentelemetry.io/collector/consumer v0.80.0
 	go.opentelemetry.io/collector/pdata v1.0.0-rcv0013
@@ -61,7 +61,7 @@ require (
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
 	github.com/xdg-go/scram v1.1.2 // indirect
 	github.com/xdg-go/stringprep v1.0.4 // indirect
-	go.opentelemetry.io/collector/config/configopaque v0.80.0 // indirect
+	go.opentelemetry.io/collector/config/configopaque v0.81.0 // indirect
 	go.opentelemetry.io/collector/config/configtelemetry v0.80.0 // indirect
 	go.opentelemetry.io/collector/exporter v0.80.0 // indirect
 	go.opentelemetry.io/collector/extension v0.80.0 // indirect
