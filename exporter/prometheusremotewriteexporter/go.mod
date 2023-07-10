@@ -16,8 +16,8 @@ require (
 	github.com/tidwall/wal v1.1.7
 	go.opentelemetry.io/collector/component v0.80.0
 	go.opentelemetry.io/collector/config/confighttp v0.80.0
-	go.opentelemetry.io/collector/config/configopaque v0.80.0
-	go.opentelemetry.io/collector/config/configtls v0.80.0
+	go.opentelemetry.io/collector/config/configopaque v0.81.0
+	go.opentelemetry.io/collector/config/configtls v0.81.0
 	go.opentelemetry.io/collector/confmap v0.80.0
 	go.opentelemetry.io/collector/consumer v0.80.0
 	go.opentelemetry.io/collector/exporter v0.80.0
