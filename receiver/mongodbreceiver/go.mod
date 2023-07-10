@@ -11,7 +11,7 @@ require (
 	github.com/testcontainers/testcontainers-go v0.20.1
 	go.mongodb.org/mongo-driver v1.11.7
 	go.opentelemetry.io/collector/component v0.80.0
-	go.opentelemetry.io/collector/config/confignet v0.80.0
+	go.opentelemetry.io/collector/config/confignet v0.81.0
 	go.opentelemetry.io/collector/config/configtls v0.80.0
 	go.opentelemetry.io/collector/confmap v0.80.0
 	go.opentelemetry.io/collector/consumer v0.80.0
