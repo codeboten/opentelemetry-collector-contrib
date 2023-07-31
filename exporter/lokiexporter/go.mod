@@ -15,7 +15,7 @@ require (
 	go.opentelemetry.io/collector/config/confighttp v0.80.0
 	go.opentelemetry.io/collector/config/configopaque v0.80.0
 	go.opentelemetry.io/collector/config/configtls v0.80.0
-	go.opentelemetry.io/collector/confmap v0.80.0
+	go.opentelemetry.io/collector/confmap v0.82.0
 	go.opentelemetry.io/collector/consumer v0.80.0
 	go.opentelemetry.io/collector/exporter v0.80.0
 	go.opentelemetry.io/collector/pdata v1.0.0-rcv0013
@@ -39,6 +39,7 @@ require (
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/compress v1.16.6 // indirect
 	github.com/knadh/koanf v1.5.0 // indirect
+	github.com/knadh/koanf/v2 v2.0.1 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
@@ -61,7 +62,7 @@ require (
 	go.opentelemetry.io/collector/config/internal v0.80.0 // indirect
 	go.opentelemetry.io/collector/extension v0.80.0 // indirect
 	go.opentelemetry.io/collector/extension/auth v0.80.0 // indirect
-	go.opentelemetry.io/collector/featuregate v1.0.0-rcv0013 // indirect
+	go.opentelemetry.io/collector/featuregate v1.0.0-rcv0014 // indirect
 	go.opentelemetry.io/collector/processor v0.80.0 // indirect
 	go.opentelemetry.io/collector/receiver v0.80.0 // indirect
 	go.opentelemetry.io/collector/semconv v0.80.0 // indirect
