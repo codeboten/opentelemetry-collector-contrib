@@ -13,7 +13,7 @@ require (
 	github.com/stretchr/testify v1.8.4
 	go.mongodb.org/atlas v0.29.0
 	go.opentelemetry.io/collector/component v0.80.0
-	go.opentelemetry.io/collector/config/configtls v0.80.0
+	go.opentelemetry.io/collector/config/configtls v0.82.0
 	go.opentelemetry.io/collector/confmap v0.80.0
 	go.opentelemetry.io/collector/consumer v0.80.0
 	go.opentelemetry.io/collector/exporter v0.80.0
@@ -46,7 +46,7 @@ require (
 	github.com/stretchr/objx v0.5.0 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.opentelemetry.io/collector v0.80.0 // indirect
-	go.opentelemetry.io/collector/config/configopaque v0.80.0 // indirect
+	go.opentelemetry.io/collector/config/configopaque v0.82.0 // indirect
 	go.opentelemetry.io/collector/config/configtelemetry v0.80.0 // indirect
 	go.opentelemetry.io/collector/featuregate v1.0.0-rcv0013 // indirect
 	go.opentelemetry.io/collector/processor v0.80.0 // indirect
@@ -55,7 +55,7 @@ require (
 	go.opentelemetry.io/otel/trace v1.16.0 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	golang.org/x/net v0.11.0 // indirect
-	golang.org/x/sys v0.9.0 // indirect
+	golang.org/x/sys v0.10.0 // indirect
 	golang.org/x/text v0.10.0 // indirect
 	gonum.org/v1/gonum v0.13.0 // indirect
 	google.golang.org/genproto v0.0.0-20230410155749-daa745c078e1 // indirect
