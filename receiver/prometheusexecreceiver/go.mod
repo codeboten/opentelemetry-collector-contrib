@@ -10,7 +10,7 @@ require (
 	github.com/prometheus/prometheus v0.43.1
 	github.com/stretchr/testify v1.8.4
 	go.opentelemetry.io/collector/component v0.80.0
-	go.opentelemetry.io/collector/confmap v0.80.0
+	go.opentelemetry.io/collector/confmap v0.83.0
 	go.opentelemetry.io/collector/consumer v0.80.0
 	go.opentelemetry.io/collector/pdata v1.0.0-rcv0013
 	go.opentelemetry.io/collector/receiver v0.80.0
@@ -91,6 +91,7 @@ require (
 	github.com/jpillora/backoff v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/knadh/koanf v1.5.0 // indirect
+	github.com/knadh/koanf/v2 v2.0.1 // indirect
 	github.com/kolo/xmlrpc v0.0.0-20220921171641-a4b6fa1dd06b // indirect
 	github.com/linode/linodego v1.14.1 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
@@ -126,7 +127,7 @@ require (
 	go.opentelemetry.io/collector v0.80.0 // indirect
 	go.opentelemetry.io/collector/config/configtelemetry v0.80.0 // indirect
 	go.opentelemetry.io/collector/exporter v0.80.0 // indirect
-	go.opentelemetry.io/collector/featuregate v1.0.0-rcv0013 // indirect
+	go.opentelemetry.io/collector/featuregate v1.0.0-rcv0014 // indirect
 	go.opentelemetry.io/collector/processor v0.80.0 // indirect
 	go.opentelemetry.io/collector/semconv v0.80.0 // indirect
 	go.opentelemetry.io/otel v1.16.0 // indirect
