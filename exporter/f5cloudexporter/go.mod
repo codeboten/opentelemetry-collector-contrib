@@ -9,7 +9,7 @@ require (
 	go.opentelemetry.io/collector/component v0.83.0
 	go.opentelemetry.io/collector/config/confighttp v0.83.0
 	go.opentelemetry.io/collector/config/configopaque v0.83.0
-	go.opentelemetry.io/collector/confmap v0.83.0
+	go.opentelemetry.io/collector/confmap v0.84.0
 	go.opentelemetry.io/collector/exporter v0.83.0
 	go.opentelemetry.io/collector/exporter/otlphttpexporter v0.83.0
 	golang.org/x/oauth2 v0.11.0
