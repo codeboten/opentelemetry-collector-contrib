@@ -12,9 +12,9 @@ require (
 	github.com/relvacode/iso8601 v1.3.0
 	github.com/stretchr/testify v1.8.4
 	go.opentelemetry.io/collector v0.83.0
-	go.opentelemetry.io/collector/component v0.83.0
+	go.opentelemetry.io/collector/component v0.84.0
 	go.opentelemetry.io/collector/consumer v0.83.0
-	go.opentelemetry.io/collector/extension v0.83.0
+	go.opentelemetry.io/collector/extension v0.84.0
 	go.opentelemetry.io/collector/pdata v1.0.0-rcv0014
 	go.opentelemetry.io/collector/receiver v0.83.0
 	go.opentelemetry.io/collector/semconv v0.83.0
@@ -78,8 +78,8 @@ require (
 	github.com/tklauser/numcpus v0.6.0 // indirect
 	github.com/yusufpapurcu/wmi v1.2.3 // indirect
 	go.opencensus.io v0.24.0 // indirect
-	go.opentelemetry.io/collector/config/configtelemetry v0.83.0 // indirect
-	go.opentelemetry.io/collector/confmap v0.83.0 // indirect
+	go.opentelemetry.io/collector/config/configtelemetry v0.84.0 // indirect
+	go.opentelemetry.io/collector/confmap v0.84.0 // indirect
 	go.opentelemetry.io/collector/connector v0.83.0 // indirect
 	go.opentelemetry.io/collector/exporter v0.83.0 // indirect
 	go.opentelemetry.io/collector/featuregate v1.0.0-rcv0014 // indirect
