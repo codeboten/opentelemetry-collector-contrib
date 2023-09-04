@@ -7,10 +7,10 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/common v0.83.0
 	github.com/stretchr/testify v1.8.4
 	go.opencensus.io v0.24.0
-	go.opentelemetry.io/collector/component v0.83.0
+	go.opentelemetry.io/collector/component v0.84.0
 	go.opentelemetry.io/collector/config/confighttp v0.83.0
 	go.opentelemetry.io/collector/config/configtls v0.83.0
-	go.opentelemetry.io/collector/confmap v0.83.0
+	go.opentelemetry.io/collector/confmap v0.84.0
 	go.opentelemetry.io/collector/extension v0.83.0
 	go.uber.org/zap v1.25.0
 )
@@ -36,7 +36,7 @@ require (
 	go.opentelemetry.io/collector/config/configauth v0.83.0 // indirect
 	go.opentelemetry.io/collector/config/configcompression v0.83.0 // indirect
 	go.opentelemetry.io/collector/config/configopaque v0.83.0 // indirect
-	go.opentelemetry.io/collector/config/configtelemetry v0.83.0 // indirect
+	go.opentelemetry.io/collector/config/configtelemetry v0.84.0 // indirect
 	go.opentelemetry.io/collector/config/internal v0.83.0 // indirect
 	go.opentelemetry.io/collector/extension/auth v0.83.0 // indirect
 	go.opentelemetry.io/collector/featuregate v1.0.0-rcv0014 // indirect
