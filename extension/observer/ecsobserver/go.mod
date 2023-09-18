@@ -7,7 +7,7 @@ require (
 	github.com/hashicorp/golang-lru v1.0.2
 	github.com/stretchr/testify v1.8.4
 	go.opentelemetry.io/collector/component v0.83.0
-	go.opentelemetry.io/collector/confmap v0.83.0
+	go.opentelemetry.io/collector/confmap v0.85.0
 	go.opentelemetry.io/collector/extension v0.83.0
 	go.uber.org/multierr v1.11.0
 	go.uber.org/zap v1.25.0
