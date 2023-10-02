@@ -11,8 +11,8 @@ require (
 	github.com/stretchr/testify v1.8.4
 	github.com/testcontainers/testcontainers-go v0.23.0
 	go.opentelemetry.io/collector/component v0.83.0
-	go.opentelemetry.io/collector/config/configopaque v0.83.0
-	go.opentelemetry.io/collector/config/configtls v0.83.0
+	go.opentelemetry.io/collector/config/configopaque v0.86.0
+	go.opentelemetry.io/collector/config/configtls v0.86.0
 	go.opentelemetry.io/collector/confmap v0.83.0
 	go.opentelemetry.io/collector/consumer v0.83.0
 	go.opentelemetry.io/collector/pdata v1.0.0-rcv0014
@@ -74,7 +74,7 @@ require (
 	golang.org/x/mod v0.10.0 // indirect
 	golang.org/x/net v0.14.0 // indirect
 	golang.org/x/sync v0.2.0 // indirect
-	golang.org/x/sys v0.11.0 // indirect
+	golang.org/x/sys v0.12.0 // indirect
 	golang.org/x/text v0.12.0 // indirect
 	golang.org/x/tools v0.9.1 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20230530153820-e85fd2cbaebc // indirect
