@@ -12,10 +12,10 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/resourcetotelemetry v0.83.0
 	github.com/stretchr/testify v1.8.4
 	go.opentelemetry.io/collector/component v0.83.0
-	go.opentelemetry.io/collector/confmap v0.83.0
+	go.opentelemetry.io/collector/confmap v0.87.0
 	go.opentelemetry.io/collector/consumer v0.83.0
 	go.opentelemetry.io/collector/exporter v0.83.0
-	go.opentelemetry.io/collector/featuregate v1.0.0-rcv0014
+	go.opentelemetry.io/collector/featuregate v1.0.0-rcv0016
 	go.opentelemetry.io/collector/pdata v1.0.0-rcv0014
 	go.opentelemetry.io/collector/semconv v0.83.0
 	go.uber.org/multierr v1.11.0
