@@ -4,15 +4,15 @@ go 1.20
 
 require (
 	github.com/DataDog/agent-payload/v5 v5.0.89
-	github.com/DataDog/datadog-agent/pkg/proto v0.50.0-devel
+	github.com/DataDog/datadog-agent/pkg/proto v0.50.0-rc.1
 	github.com/DataDog/datadog-agent/pkg/trace v0.50.0-devel.0.20231030140030-aa8a206e6ac7
 	github.com/DataDog/datadog-api-client-go/v2 v2.18.0
 	github.com/DataDog/gohai v0.0.0-20220718130825-1776f9beb9cc
 	github.com/DataDog/opentelemetry-mapping-go/pkg/inframetadata v0.8.0
-	github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes v0.8.0
+	github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes v0.8.2
 	github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/logs v0.8.0
-	github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/metrics v0.8.0
-	github.com/DataDog/opentelemetry-mapping-go/pkg/quantile v0.8.0
+	github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/metrics v0.8.2
+	github.com/DataDog/opentelemetry-mapping-go/pkg/quantile v0.8.2
 	github.com/DataDog/sketches-go v1.4.3
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp v1.20.0
 	github.com/aws/aws-sdk-go v1.47.6
@@ -36,7 +36,7 @@ require (
 	go.opentelemetry.io/collector/exporter v0.88.1-0.20231026220224-6405e152a2d9
 	go.opentelemetry.io/collector/featuregate v1.0.0-rcv0017.0.20231026220224-6405e152a2d9
 	go.opentelemetry.io/collector/otelcol v0.88.1-0.20231026220224-6405e152a2d9
-	go.opentelemetry.io/collector/pdata v1.0.0-rcv0017.0.20231026220224-6405e152a2d9
+	go.opentelemetry.io/collector/pdata v1.0.0-rcv0018
 	go.opentelemetry.io/collector/processor v0.88.1-0.20231026220224-6405e152a2d9
 	go.opentelemetry.io/collector/processor/batchprocessor v0.88.1-0.20231026220224-6405e152a2d9
 	go.opentelemetry.io/collector/receiver v0.88.1-0.20231026220224-6405e152a2d9
