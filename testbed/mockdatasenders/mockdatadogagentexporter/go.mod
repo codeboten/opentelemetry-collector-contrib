@@ -36,7 +36,7 @@ require (
 	github.com/philhofer/fwd v1.1.2 // indirect
 	github.com/prometheus/client_golang v1.19.0 // indirect
 	github.com/prometheus/client_model v0.6.1 // indirect
-	github.com/prometheus/common v0.52.3 // indirect
+	github.com/prometheus/common v0.53.0 // indirect
 	github.com/prometheus/procfs v0.12.0 // indirect
 	github.com/rs/cors v1.10.1 // indirect
 	go.opentelemetry.io/collector v0.99.1-0.20240429191155-ce09d9773a05 // indirect
