@@ -70,7 +70,7 @@ require (
 	github.com/tklauser/numcpus v0.6.1 // indirect
 	github.com/yusufpapurcu/wmi v1.2.3 // indirect
 	go.opentelemetry.io/collector/config/configtelemetry v0.99.0 // indirect
-	go.opentelemetry.io/collector/pdata v1.6.0 // indirect
+	go.opentelemetry.io/collector/pdata v1.6.1-0.20240429191155-ce09d9773a05 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.49.0 // indirect
 	go.opentelemetry.io/otel v1.25.0 // indirect
 	go.opentelemetry.io/otel/exporters/prometheus v0.47.0 // indirect

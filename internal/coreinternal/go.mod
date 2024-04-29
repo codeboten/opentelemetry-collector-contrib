@@ -12,7 +12,7 @@ require (
 	go.opentelemetry.io/collector v0.99.0
 	go.opentelemetry.io/collector/component v0.99.0
 	go.opentelemetry.io/collector/consumer v0.99.0
-	go.opentelemetry.io/collector/pdata v1.6.0
+	go.opentelemetry.io/collector/pdata v1.6.1-0.20240429191155-ce09d9773a05
 	go.opentelemetry.io/collector/receiver v0.99.0
 	go.opentelemetry.io/collector/semconv v0.99.0
 	go.opentelemetry.io/otel v1.25.0
