@@ -9,9 +9,12 @@ import (
 	"sync/atomic"
 	"time"
 
-	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/plog"
 	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/log"
+	"go.opentelemetry.io/otel/log/logtest"
+	"go.opentelemetry.io/otel/sdk/instrumentation"
+	sdklog "go.opentelemetry.io/otel/sdk/log"
 	"go.opentelemetry.io/otel/sdk/resource"
 	"go.uber.org/zap"
 	"golang.org/x/time/rate"
@@ -30,32 +33,47 @@ type worker struct {
 	index          int                 // worker index
 }
 
-func (w worker) simulateLogs(res *resource.Resource, exporter exporter, telemetryAttributes []attribute.KeyValue) {
+func (w worker) simulateLogs(res *resource.Resource, exporterFunc func() (sdklog.Exporter, error), telemetryAttributes []attribute.KeyValue) {
 	limiter := rate.NewLimiter(w.limitPerSecond, 1)
 	var i int64
 
 	for w.running.Load() {
-		logs := plog.NewLogs()
-		nRes := logs.ResourceLogs().AppendEmpty().Resource()
-		attrs := res.Attributes()
-		for _, attr := range attrs {
-			nRes.Attributes().PutStr(string(attr.Key), attr.Value.AsString())
-		}
-		log := logs.ResourceLogs().At(0).ScopeLogs().AppendEmpty().LogRecords().AppendEmpty()
-		log.Body().SetStr(w.body)
-		log.SetTimestamp(pcommon.NewTimestampFromTime(time.Now()))
-		log.SetDroppedAttributesCount(1)
-		log.SetSeverityNumber(w.severityNumber)
-		log.SetSeverityText(w.severityText)
-		log.Attributes()
-		lattrs := log.Attributes()
-		lattrs.PutStr("app", "server")
 
-		for i, attr := range telemetryAttributes {
-			lattrs.PutStr(string(attr.Key), telemetryAttributes[i].Value.AsString())
+		var logs []logdata.LogRecords
+
+		// w.body
+
+		// logs := plog.NewLogs()
+		// nRes := logs.ResourceLogs().AppendEmpty().Resource()
+		// attrs := res.Attributes()
+		// for _, attr := range attrs {
+		// 	nRes.Attributes().PutStr(string(attr.Key), attr.Value.AsString())
+		// }
+		// log := logs.ResourceLogs().At(0).ScopeLogs().AppendEmpty().LogRecords().AppendEmpty()
+		// log.Body().SetStr(w.body)
+		// log.SetTimestamp(pcommon.NewTimestampFromTime(time.Now()))
+		// log.SetDroppedAttributesCount(1)
+		// log.SetSeverityNumber(w.severityNumber)
+		// log.SetSeverityText(w.severityText)
+		// log.Attributes()
+		// lattrs := log.Attributes()
+		// lattrs.PutStr("app", "server")
+
+		// for i, attr := range telemetryAttributes {
+		// 	lattrs.PutStr(string(attr.Key), telemetryAttributes[i].Value.AsString())
+		// }
+
+		rf := logtest.RecordFactory{
+			Resource:             res,
+			InstrumentationScope: &instrumentation.Scope{Name: "telemetrygen"},
 		}
 
-		if err := exporter.export(logs); err != nil {
+		// rl := logdata.ResourceLogs{
+		// 	Resource:     res,
+		// 	ScopeMetrics: []logdata.ScopeMetrics{{LogRecords: logs}},
+		// }
+
+		if err := exporter.Export(context.Background(), []log.Record{rf.NewRecord()}); err != nil {
 			w.logger.Fatal("exporter failed", zap.Error(err))
 		}
 		if err := limiter.Wait(context.Background()); err != nil {

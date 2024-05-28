@@ -4,12 +4,15 @@
 package logs
 
 import (
+	"context"
 	"fmt"
 	"sync"
 	"sync/atomic"
 	"time"
 
 	"go.opentelemetry.io/collector/pdata/plog"
+	"go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp"
+	sdklog "go.opentelemetry.io/otel/sdk/log"
 	"go.opentelemetry.io/otel/sdk/resource"
 	semconv "go.opentelemetry.io/otel/semconv/v1.4.0"
 	"go.uber.org/zap"
@@ -25,12 +28,38 @@ func Start(cfg *Config) error {
 		return err
 	}
 
-	e, err := newExporter(cfg)
-	if err != nil {
-		return err
+	expFunc := func() (sdklog.Exporter, error) {
+		var exp sdklog.Exporter
+		if cfg.UseHTTP {
+			var exporterOpts []otlploghttp.Option
+
+			logger.Info("starting HTTP exporter")
+			exporterOpts, err = httpExporterOptions(cfg)
+			if err != nil {
+				return nil, err
+			}
+			exp, err = otlploghttp.New(context.Background(), exporterOpts...)
+			if err != nil {
+				return nil, fmt.Errorf("failed to obtain OTLP HTTP exporter: %w", err)
+			}
+		} else {
+			// TODO grpc not supported yet
+			// var exporterOpts []otlploggrpc.Option
+
+			// logger.Info("starting gRPC exporter")
+			// exporterOpts, err = grpcExporterOptions(cfg)
+			// if err != nil {
+			// 	return nil, err
+			// }
+			// exp, err = otlploggrpc.New(context.Background(), exporterOpts...)
+			// if err != nil {
+			// 	return nil, fmt.Errorf("failed to obtain OTLP gRPC exporter: %w", err)
+			// }
+		}
+		return exp, err
 	}
 
-	if err = Run(cfg, e, logger); err != nil {
+	if err = Run(cfg, expFunc, logger); err != nil {
 		logger.Error("failed to execute the test scenario.", zap.Error(err))
 		return err
 	}

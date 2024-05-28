@@ -12,6 +12,7 @@ import (
 
 	"go.opentelemetry.io/collector/pdata/plog"
 	"go.opentelemetry.io/collector/pdata/plog/plogotlp"
+	"go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/metadata"
@@ -119,4 +120,29 @@ func (e *httpClientExporter) export(logs plog.Logs) error {
 	}
 
 	return nil
+}
+
+// httpExporterOptions creates the configuration options for an HTTP-based OTLP metric exporter.
+// It configures the exporter with the provided endpoint, URL path, connection security settings, and headers.
+func httpExporterOptions(cfg *Config) ([]otlploghttp.Option, error) {
+	httpExpOpt := []otlploghttp.Option{
+		otlploghttp.WithEndpoint(cfg.Endpoint()),
+		otlploghttp.WithURLPath(cfg.HTTPPath),
+	}
+
+	if cfg.Insecure {
+		httpExpOpt = append(httpExpOpt, otlploghttp.WithInsecure())
+	} else {
+		tlsCfg, err := common.GetTLSCredentialsForHTTPExporter(cfg.CaFile, cfg.ClientAuth)
+		if err != nil {
+			return nil, fmt.Errorf("failed to get TLS credentials: %w", err)
+		}
+		httpExpOpt = append(httpExpOpt, otlploghttp.WithTLSClientConfig(tlsCfg))
+	}
+
+	if len(cfg.Headers) > 0 {
+		httpExpOpt = append(httpExpOpt, otlploghttp.WithHeaders(cfg.Headers))
+	}
+
+	return httpExpOpt, nil
 }
