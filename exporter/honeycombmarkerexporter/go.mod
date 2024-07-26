@@ -14,8 +14,8 @@ require (
 	go.opentelemetry.io/collector/exporter v0.105.1-0.20240717163034-43ed6184f9fe
 	go.opentelemetry.io/collector/pdata v1.12.1-0.20240716231837-5753a58f712b
 	go.opentelemetry.io/collector/semconv v0.105.1-0.20240717163034-43ed6184f9fe // indirect
-	go.opentelemetry.io/otel/metric v1.28.0
-	go.opentelemetry.io/otel/trace v1.28.0
+	go.opentelemetry.io/otel/metric v1.28.0 // indirect
+	go.opentelemetry.io/otel/trace v1.28.0 // indirect
 	go.uber.org/goleak v1.3.0
 	go.uber.org/zap v1.27.0
 )
