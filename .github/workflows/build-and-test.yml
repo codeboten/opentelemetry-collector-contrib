@@ -119,6 +119,13 @@ jobs:
           key: go-lint-build-${{ matrix.group }}-${{ runner.os }}-${{ hashFiles('**/go.sum') }}
       - name: Lint
         run: GOOS=${{ matrix.goos }} GOARCH=amd64 make -j2 golint GROUP=${{ matrix.group }}
+      - name: Report results
+        uses: codeboten/github-action-to-otlp@v1
+        env:
+          HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY }}
+        with:
+          headers: "x-honeycomb-team=${HONEYCOMB_API_KEY}"
+          endpoint: 'api.honeycomb.io:443'
   lint:
     if: ${{ github.actor != 'dependabot[bot]' && always() }}
     runs-on: ubuntu-latest
