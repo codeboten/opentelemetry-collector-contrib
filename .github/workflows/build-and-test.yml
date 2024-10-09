@@ -119,6 +119,11 @@ jobs:
           key: go-lint-build-${{ matrix.group }}-${{ runner.os }}-${{ hashFiles('**/go.sum') }}
       - name: Lint
         run: GOOS=${{ matrix.goos }} GOARCH=amd64 make -j2 golint GROUP=${{ matrix.group }}
+      - name: Report build timings
+        uses: codeboten/github-action-to-otlp@v1
+        with:
+          headers: "x-honeycomb-team=${{ secrets.HONEYCOMB_API_KEY }}"
+          endpoint: 'api.honeycomb.io:443'
   lint:
     if: ${{ github.actor != 'dependabot[bot]' && always() }}
     runs-on: ubuntu-latest
@@ -181,6 +186,11 @@ jobs:
         run: make install-tools
       - name: Run `govulncheck`
         run: make -j2 gogovulncheck GROUP=${{ matrix.group }}
+      - name: Report build timings
+        uses: codeboten/github-action-to-otlp@v1
+        with:
+          headers: "x-honeycomb-team=${{ secrets.HONEYCOMB_API_KEY }}"
+          endpoint: 'api.honeycomb.io:443'
   checks:
     runs-on: ubuntu-latest
     needs: [setup-environment]
@@ -247,6 +257,11 @@ jobs:
         run: |
           make generate-gh-issue-templates
           git diff --exit-code '.github/ISSUE_TEMPLATE' || (echo 'Dropdowns in issue templates are out of date, please run "make generate-gh-issue-templates" and commit the changes in this PR.' && exit 1)
+      - name: Report build timings
+        uses: codeboten/github-action-to-otlp@v1
+        with:
+          headers: "x-honeycomb-team=${{ secrets.HONEYCOMB_API_KEY }}"
+          endpoint: 'api.honeycomb.io:443'
   unittest-matrix:
     strategy:
       fail-fast: false
@@ -311,6 +326,11 @@ jobs:
         with:
           name: coverage-artifacts-${{ matrix.go-version }}-${{ matrix.runner }}-${{ matrix.group }}
           path: ${{ matrix.group }}-coverage.txt
+      - name: Report build timings
+        uses: codeboten/github-action-to-otlp@v1
+        with:
+          headers: "x-honeycomb-team=${{ secrets.HONEYCOMB_API_KEY }}"
+          endpoint: 'api.honeycomb.io:443'
   unittest:
     if: ${{ github.actor != 'dependabot[bot]' && always() }}
     runs-on: ubuntu-latest
