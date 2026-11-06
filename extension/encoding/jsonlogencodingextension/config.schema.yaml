@@ -1,0 +1,13 @@
+$defs:
+  json_encoding_mode:
+    type: string
+type: object
+properties:
+  array_mode:
+    type: boolean
+  mode:
+    description: Export raw log string instead of log wrapper
+    $ref: json_encoding_mode
+  parse_ints:
+    description: ParseInts preserves integer literals within the int64 range as int64. Decimal, exponent, and out-of-range integer literals are converted to float64.
+    type: boolean
