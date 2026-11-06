@@ -1,0 +1,11 @@
+$defs:
+  handle_as:
+    type: string
+type: object
+properties:
+  handle_json_payload_as:
+    description: Controls how the json payload of the [LogEntry]  is parsed into the body.
+    $ref: handle_as
+  handle_proto_payload_as:
+    description: Controls how the proto payload of the [LogEntry]  is parsed into the body.
+    $ref: handle_as

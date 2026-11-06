@@ -1,0 +1,19 @@
+$defs:
+  cloud_watch_config:
+    type: object
+    properties:
+      streams:
+        description: Streams routes subscription-filter events to inner encoding extensions by logGroup/logStream pattern or service name. Empty means no routing.
+        type: array
+        items:
+          $ref: ./internal/unmarshaler/subscription-filter.cloud_watch_stream
+type: object
+properties:
+  cloudwatch:
+    description: CloudWatch is consulted only when Format is a CloudWatch subscription-filter format.
+    $ref: cloud_watch_config
+  format:
+    description: Format selects the AWS logs format. See supportedLogFormats for valid values.
+    type: string
+  vpcflow:
+    $ref: ./internal/unmarshaler/vpc-flow-log.config

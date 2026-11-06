@@ -1,0 +1,8 @@
+type: object
+properties:
+  logs:
+    $ref: ./internal/unmarshaler/logs.logs_config
+  metrics:
+    $ref: ./internal/unmarshaler/metrics.metrics_config
+  traces:
+    $ref: ./internal/unmarshaler/traces.traces_config
