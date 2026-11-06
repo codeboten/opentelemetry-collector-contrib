@@ -1,0 +1,8 @@
+type: object
+properties:
+  encoding:
+    type: string
+  marshaling_separator:
+    type: string
+  unmarshaling_separator:
+    type: string
